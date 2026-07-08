@@ -1,0 +1,8 @@
+[package]
+org = "damsith_adikari"
+name = "okf_ballerina_agent"
+version = "0.1.0"
+distribution = "2201.13.4"
+
+[build-options]
+observabilityIncluded = true

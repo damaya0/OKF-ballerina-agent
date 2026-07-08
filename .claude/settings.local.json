@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bal version *)",
+      "PowerShell(bal version *)",
+      "Bash(COLUMNS=200 bal search *)",
+      "Read(//c/Users/Damsith Adikari/.ballerina/**)",
+      "Bash(where bal *)",
+      "Bash(/c/Program Files/Ballerina/bin/bal.bat version *)",
+      "Bash(export COLUMNS=200)",
+      "Bash(\"/c/Program Files/Ballerina/bin/bal.bat\" search anthropic)",
+      "Bash(\"/c/Program Files/Ballerina/bin/bal.bat\" search claude)"
+    ]
+  }
+}
