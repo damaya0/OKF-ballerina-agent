@@ -1,9 +1,11 @@
-import ballerina/http;
+import ballerina/ai;
+import ballerinax/ai.anthropic as anthropic;
 
 configurable string anthropicApiKey = ?;
-configurable string anthropicModel = ?;
+configurable string anthropicModelName = ?;
 
-final http:Client anthropicClient = check new ("https://api.anthropic.com/v1", timeout = 60);
+final anthropic:ANTHROPIC_MODEL_NAMES ANTHROPIC_MODEL = check anthropicModelName.ensureType();
+final ai:ModelProvider anthropicModelProvider = check new anthropic:ModelProvider(anthropicApiKey, ANTHROPIC_MODEL, maxTokens = 4096);
 
 final string SYSTEM_PROMPT =
     "You are a research agent that answers questions using a knowledge bundle " +
@@ -30,39 +32,16 @@ final string SYSTEM_PROMPT =
     "Answer the user's question directly and concisely, grounded in what you " +
     "read, and mention which concept id(s) the answer came from.";
 
-final ToolDefinition & readonly OPEN_CONCEPT_TOOL = {
+final ai:ChatCompletionFunctions OPEN_CONCEPT_TOOL = {
     name: "open_concept",
     description: "Open a concept page in the OKF knowledge bundle by following a " +
         "link/id copied verbatim from the document you're currently viewing " +
         "(e.g. 'datasets/index.md', '/tables/users.md', '../tables/index.md').",
-    input_schema: {
+    parameters: {
+        'type: "object",
         properties: {
-            path: {
-                'type: "string",
-                description: "The link path or concept id to open, copied exactly as it appears in the markdown you just read."
-            }
+            path: {'type: "string", description: "The link path or concept id to open, copied exactly as it appears in the markdown you just read."}
         },
         required: ["path"]
     }
 };
-
-isolated function callMessagesApi(ChatMessage[] chatMessages, boolean includeTools = true) returns MessagesResponse|error {
-    MessagesRequest requestPayload = includeTools ? {
-            model: anthropicModel,
-            max_tokens: 2048,
-            system: SYSTEM_PROMPT,
-            messages: chatMessages,
-            tools: [OPEN_CONCEPT_TOOL]
-        } : {
-            model: anthropicModel,
-            max_tokens: 2048,
-            system: SYSTEM_PROMPT,
-            messages: chatMessages
-        };
-
-    MessagesResponse messagesResponse = check anthropicClient->/messages.post(
-        requestPayload,
-        headers = {"x-api-key": anthropicApiKey, "anthropic-version": "2023-06-01"}
-    );
-    return messagesResponse;
-}

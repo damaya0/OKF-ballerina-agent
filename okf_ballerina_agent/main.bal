@@ -1,3 +1,4 @@
+import ballerina/ai;
 import ballerina/io;
 import ballerina/log;
 
@@ -12,59 +13,59 @@ public function main(string question) returns error? {
     string initialUserContent = "Question: " + question +
         "\n\nRoot index of the knowledge bundle (index.md):\n\n" + rootIndexContent;
 
-    ChatMessage[] conversation = [
+    ai:ChatMessage[] conversation = [
+        {role: "system", content: SYSTEM_PROMPT},
         {role: "user", content: initialUserContent}
     ];
 
     foreach int _ in 0 ..< maxNavigationSteps {
-        MessagesResponse response = check callMessagesApi(conversation);
+        ai:ChatAssistantMessage response = check anthropicModelProvider->chat(conversation, tools = [OPEN_CONCEPT_TOOL]);
+        conversation.push(response);
 
-        ToolUseBlock[] toolUseBlocks = [];
-        string answerText = "";
-        foreach AssistantContentBlock block in response.content {
-            if block is ToolUseBlock {
-                toolUseBlocks.push(block);
-            } else {
-                string blockText = block.text;
-                answerText = answerText + blockText;
-            }
-        }
-
-        if toolUseBlocks.length() == 0 {
-            io:println(answerText);
+        ai:FunctionCall[]? toolCalls = response.toolCalls;
+        if toolCalls is () || toolCalls.length() == 0 {
+            string? answerText = response.content;
+            io:println(answerText ?: "");
             return;
         }
 
-        conversation.push({role: "assistant", content: response.content});
+        foreach ai:FunctionCall toolCall in toolCalls {
+            string toolName = toolCall.name;
+            map<json>? toolArguments = toolCall.arguments;
 
-        ToolResultBlock[] toolResults = [];
-        foreach ToolUseBlock toolUse in toolUseBlocks {
-            string linkPath = toolUse.input.path;
-            string toolUseId = toolUse.id;
-
-            string|error resolved = resolveConceptLink(currentDir, linkPath);
-            if resolved is error {
-                string resolveErrorMessage = resolved.message();
-                log:printWarn("failed to resolve link", link = linkPath, cause = resolveErrorMessage);
-                toolResults.push({tool_use_id: toolUseId, content: "Error: " + resolveErrorMessage, is_error: true});
-                continue;
+            string resultText;
+            if toolArguments is () {
+                resultText = "Error: no arguments received for this tool call";
+            } else {
+                OpenConceptArgs|error parsedArgs = toolArguments.cloneWithType();
+                if parsedArgs is error {
+                    string parseErrorMessage = parsedArgs.message();
+                    resultText = "Error: could not parse tool arguments: " + parseErrorMessage;
+                } else {
+                    string linkPath = parsedArgs.path;
+                    string|error resolved = resolveConceptLink(currentDir, linkPath);
+                    if resolved is error {
+                        string resolveErrorMessage = resolved.message();
+                        log:printWarn("failed to resolve link", link = linkPath, cause = resolveErrorMessage);
+                        resultText = "Error: " + resolveErrorMessage;
+                    } else {
+                        string relativePath = resolved;
+                        string|error fileContent = readConceptFile(bundleRootPath, relativePath);
+                        if fileContent is error {
+                            log:printWarn("failed to open concept", concept = relativePath);
+                            resultText = "Error: no document at '" + linkPath + "'";
+                        } else {
+                            string concept = fileContent;
+                            log:printInfo("opened concept", concept = relativePath);
+                            currentDir = dirnameOf(relativePath);
+                            resultText = concept;
+                        }
+                    }
+                }
             }
-            string relativePath = resolved;
 
-            string|error fileContent = readConceptFile(bundleRootPath, relativePath);
-            if fileContent is error {
-                log:printWarn("failed to open concept", concept = relativePath);
-                toolResults.push({tool_use_id: toolUseId, content: "Error: no document at '" + linkPath + "'", is_error: true});
-                continue;
-            }
-            string concept = fileContent;
-
-            log:printInfo("opened concept", concept = relativePath);
-            currentDir = dirnameOf(relativePath);
-            toolResults.push({tool_use_id: toolUseId, content: concept});
+            conversation.push({role: "function", name: toolName, content: resultText});
         }
-
-        conversation.push({role: "user", content: toolResults});
     }
 
     log:printWarn("reached navigation step limit, forcing a final answer", maxNavigationSteps = maxNavigationSteps);
@@ -72,13 +73,7 @@ public function main(string question) returns error? {
         role: "user",
         content: "You've reached the exploration limit. Answer now using what you've read so far."
     });
-    MessagesResponse finalResponse = check callMessagesApi(conversation, includeTools = false);
-    string finalAnswer = "";
-    foreach AssistantContentBlock block in finalResponse.content {
-        if block is TextBlock {
-            string blockText = block.text;
-            finalAnswer = finalAnswer + blockText;
-        }
-    }
-    io:println(finalAnswer);
+    ai:ChatAssistantMessage finalResponse = check anthropicModelProvider->chat(conversation);
+    string? finalAnswer = finalResponse.content;
+    io:println(finalAnswer ?: "");
 }
