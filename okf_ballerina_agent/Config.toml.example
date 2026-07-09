@@ -1,0 +1,3 @@
+anthropicApiKey = "sk-ant-..."
+anthropicModelName = "claude-sonnet-4-5"
+bundleRootPath = "../docs_bundle"

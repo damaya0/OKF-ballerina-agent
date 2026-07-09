@@ -1,0 +1,8 @@
+# Contains real customer support content -- never committed.
+docs/
+docs_bundle/
+
+# A separate git repo (GoogleCloudPlatform/knowledge-catalog), kept locally
+# for reference only. Not required to run either program in this repo --
+# clone it yourself if you want the OKF spec/reference implementation.
+knowledge-catalog/
