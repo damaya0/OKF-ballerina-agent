@@ -1,4 +1,5 @@
 import ballerina/ai;
+import ballerina/log;
 import ballerinax/ai.anthropic as anthropic;
 
 configurable string anthropicApiKey = ?;
@@ -45,3 +46,15 @@ final ai:ChatCompletionFunctions OPEN_CONCEPT_TOOL = {
         required: ["path"]
     }
 };
+
+// Resolves and reads the concept file for a single open_concept tool call.
+// Returns the file content and the updated current directory, or an error.
+isolated function openConcept(ai:FunctionCall toolCall, string currentDir, string bundleRootPath) returns ConceptResult|error {
+    map<json> toolArguments = check toolCall.arguments.ensureType();
+    OpenConceptArgs parsedArgs = check toolArguments.cloneWithType();
+    string linkPath = parsedArgs.path;
+    string relativePath = check resolveConceptLink(currentDir, linkPath);
+    string conceptContent = check readConceptFile(bundleRootPath, relativePath);
+    log:printInfo("opened concept", concept = relativePath);
+    return {content: conceptContent, newCurrentDir: dirnameOf(relativePath)};
+}
