@@ -27,9 +27,10 @@ public function main(string question = "") returns error? {
     io:println(answer);
 }
 
-# Opens a concept page or directory index in the OKF knowledge bundle by
-# following a link/id copied verbatim from the document currently being viewed.
-# + conceptId - The concept ID (or directory index link) to open.
+# Opens a page in the OKF knowledge bundle -- a concept, or a directory's
+# index page -- by its concept id, copied verbatim from the markdown
+# currently being viewed.
+# + conceptId - The concept id to open. Always a concept id, nothing else.
 # + return - The markdown content of the file, or an error string.
 @ai:AgentTool
 public isolated function open_concept(string conceptId) returns string|error {
