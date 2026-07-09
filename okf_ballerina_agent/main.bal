@@ -3,7 +3,6 @@ import ballerina/io;
 import ballerina/log;
 
 configurable string bundleRootPath = ?;
-configurable int maxNavigationSteps = ?;
 
 public function main(string question = "") returns error? {
     string askedQuestion = question;
@@ -13,47 +12,30 @@ public function main(string question = "") returns error? {
 
     string rootIndexRelativePath = "index.md";
     string rootIndexContent = check readConceptFile(bundleRootPath, rootIndexRelativePath);
-    string currentDir = dirnameOf(rootIndexRelativePath);
 
-    string initialUserContent = "Question: " + askedQuestion +
-        "\n\nRoot index of the knowledge bundle (index.md):\n\n" + rootIndexContent;
+    ai:Agent okfAgent = check new (
+        systemPrompt = SYSTEM_PROMPT,
+        model = anthropicModelProvider,
+        tools = [open_concept]
+    );
 
-    ai:ChatMessage[] conversation = [
-        {role: "system", content: SYSTEM_PROMPT},
-        {role: "user", content: initialUserContent}
-    ];
+    // Prepend the root index so the agent knows where to start navigating.
+    string userMessage = "Question: " + askedQuestion +
+        "\n\nindex.md file of the knowledge bundle:\n\n" + rootIndexContent;
 
-    foreach int _ in 0 ..< maxNavigationSteps {
-        ai:ChatAssistantMessage response = check anthropicModelProvider->chat(conversation, tools = [OPEN_CONCEPT_TOOL]);
-        conversation.push(response);
-
-        ai:FunctionCall[]? toolCalls = response.toolCalls;
-        if toolCalls is () || toolCalls.length() == 0 {
-            string? answerText = response.content;
-            io:println(answerText ?: "");
-            return;
-        }
-
-        foreach ai:FunctionCall toolCall in toolCalls {
-            string toolName = toolCall.name;
-            string resultText;
-            do {
-                ConceptResult conceptResult = check openConcept(toolCall, currentDir, bundleRootPath);
-                currentDir = conceptResult.newCurrentDir;
-                resultText = conceptResult.content;
-            } on fail error err {
-                resultText = "Error: " + err.message();
-            }
-            conversation.push({role: "function", name: toolName, content: resultText});
-        }
-    }
-
-    log:printWarn("reached navigation step limit, forcing a final answer", maxNavigationSteps = maxNavigationSteps);
-    conversation.push({
-        role: "user",
-        content: "You've reached the exploration limit. Answer now using what you've read so far."
-    });
-    ai:ChatAssistantMessage finalResponse = check anthropicModelProvider->chat(conversation);
-    string? finalAnswer = finalResponse.content;
-    io:println(finalAnswer ?: "");
+    string answer = check okfAgent.run(userMessage);
+    io:println(answer);
 }
+
+# Opens a concept page or directory index in the OKF knowledge bundle by
+# following a link/id copied verbatim from the document currently being viewed.
+# + conceptId - The concept ID (or directory index link) to open.
+# + return - The markdown content of the file, or an error string.
+@ai:AgentTool
+public isolated function open_concept(string conceptId) returns string|error {
+    string relativePath = check getPathFromMap(conceptId);
+    string conceptContent = check readConceptFile(bundleRootPath, relativePath);
+    log:printInfo("opened concept", concept = relativePath);
+    return conceptContent;
+}
+

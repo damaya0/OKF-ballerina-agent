@@ -1,0 +1,1419 @@
+===== Q1 =====
+QUESTION: What MCP tools are available for CIAM, and what do they do?
+--- output ---
+java.exe : time=2026-07-09T12:14:21.640+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:14:23.767+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/ciam.md"
+Based on the CIAM MCP Tools Reference documentation (apis/ciam.md), here are the available MCP tools for CIAM and what they do:
+
+## CIAM MCP Tools
+
+1. **getCiamAccount** ? Retrieve complete CIAM account details including profile information, account state, authentication status, and personal information for a given account number.
+
+2. **unlockCiamAccount** ? Unlock a locked CIAM account (typically locked due to multiple failed login attempts or admin action).
+
+3. **lockCiamAccount** ? Lock a CIAM account (used for security concerns, suspected fraud, or customer requests).
+
+4. **activateCiamAccount** ? Manually activate a CIAM account, bypassing the normal email activation workflow (useful for accounts in `PENDING_AP` or `PENDING_SR` states).
+
+5. **disableCiamAccount** ? Disable a CIAM account (used for account closures, compliance requirements, or security incidents).
+
+6. **enableCiamAccount** ? Re-enable a previously disabled CIAM account.
+
+7. **restoreCiamAccount** ? Restore a CIAM account that was previously deleted online (only works for accounts with `ONLINE_DELETED` status).
+
+8. **activateCiamEmailOnlineSignup** ? Send activation email for accounts in `PENDING_SR` state (for online signups where customers haven't received or completed activation).
+
+9. **activateCiamEmailOnPropertySignup** ? Send activation email for accounts in `PENDING_AP` state (for on-property signups where customers need to activate their account).
+
+10. **resetCiamPassword** ? Send a password reset email for customers who forgot their password or need to reset it for security reasons.
+
+All tools require an `accountNumber` and `correlationId` parameter and return JSON responses indicating success or error status.
+
+--- elapsed: 15.465942 sec ---
+
+===== Q2 =====
+QUESTION: How do I update a customer's email address across all backend systems?
+--- output ---
+java.exe : time=2026-07-09T12:14:37.709+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+error: Maximum iteration limit exceeded while processing the query. 
+{"steps":[{"tool":{"name":"open_concept","arguments":{"path":"apis/index.md"}},"observation":"# API Reference
+
+* [CIAM MCP Tools Reference](ciam.md) - Reference documentation for CIAM (Customer Identity & Access Management) MCP tools for 
+troubleshooting and account management operations.
+* [Cross-System Account MCP Tools Reference](accounts.md) - MCP tools for updating customer account information across multiple 
+backend systems (CIAM, ProfileDB, Engage, SFMC) through a unified asynchronous interface.
+* [Engage MCP Tools Reference](engage.md) - Reference documentation for Engage Loyalty System MCP tools used for Unity loyalty 
+platform troubleshooting and account management.
+* [MCP Tools Reference ? README](README.md) - Overview of MCP (Model Context Protocol) tools available for troubleshooting and 
+account management across CIAM, ELK, Engage, ProfileDB, SFMC, and other systems.
+* [ProfileDB MCP Tools Reference](profiledb.md) - Reference documentation for ProfileDB MCP tools used for customer profile 
+management and data retrieval across Hard Rock's Unity loyalty platform.
+* [SFMC MCP Tools Reference](sfmc.md) - Reference documentation for Salesforce Marketing Cloud (SFMC) MCP tools for customer 
+profile data and marketing automation integration.
+
+# Subdirectories
+
+* [elk](elk/index.md) - Documentation for querying and interpreting ELK logs across CIAM authentication events, WSO2 integration 
+middleware telemetry, notification systems, and shared MCP tooling infrastructure with real-world scenarios and troubleshooting 
+patterns."},{"tool":{"name":"open_concept","arguments":{"path":"apis/accounts.md"}},"observation":error FileNotFoundError ("no such 
+file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\accounts.md")},{"tool":{"name":"open_concept","argument
+s":{"path":"apis/accounts.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportO
+KF\docs_bundle\apis\apis\accounts.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/accounts.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\accounts.md")},{"tool":{"na
+me":"open_concept","arguments":{"path":"apis/accounts.md"}},"observation":error FileNotFoundError ("no such file or directory: 
+C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\accounts.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/in
+dex.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\ap
+is\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/accounts.md"}},"observation":error FileNotFoundError ("no 
+such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\accounts.md")},{"tool":{"name":"open_concept","arg
+uments":{"path":"apis/accounts.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\Sup
+portOKF\docs_bundle\apis\apis\accounts.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/index.md"}},"observation":erro
+r FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\index.md")},{"tool":{"nam
+e":"open_concept","arguments":{"path":"apis/accounts.md"}},"observation":error FileNotFoundError ("no such file or directory: 
+C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\accounts.md")}]}
+
+--- elapsed: 36.1146151 sec ---
+
+===== Q3 =====
+QUESTION: What loyalty system does the Engage API manage, and what operations does it support?
+--- output ---
+java.exe : time=2026-07-09T12:15:13.743+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:15:16.249+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/engage.md"
+Based on the documentation from `apis/engage.md`, here's what the Engage API manages and supports:
+
+## Loyalty System
+The Engage API manages the **Unity loyalty platform** for Hard Rock's customer loyalty program.
+
+## Supported Operations
+
+The Engage API supports four main operations:
+
+1. **getEngageAccount** ? Retrieves comprehensive loyalty account profiles including:
+   - Personal information (name, contact details, addresses)
+   - Tier status and progression
+   - Property profiles across different Hard Rock locations
+   - Communication preferences (email, mail, SMS)
+   - Legal consents and agreements
+
+2. **getEngageUnityPoints** ? Retrieves Unity loyalty points data including:
+   - Current points balance
+   - Expiring points balance
+   - Days until expiration
+
+3. **getEngageFreePlay** ? Retrieves free play balance information including:
+   - Total available free play across all properties
+   - Property-specific balances and expiration dates
+   - Earned, used, and available amounts per property
+   - Settlement/pending status for recent visits
+
+4. **getEngageTier** ? Retrieves tier status and progression including:
+   - Current tier level and credits
+   - Tier period dates (start, end, earnings expiration)
+   - Credits needed to reach next tier
+   - Tier matching status
+   - Multi-tier goal tracking
+
+All operations are read-only queries designed for troubleshooting and account verification purposes.
+
+**Source:** `apis/engage.md`
+
+--- elapsed: 24.278585 sec ---
+
+===== Q4 =====
+QUESTION: What can I retrieve from the ProfileDB MCP tools?
+--- output ---
+java.exe : time=2026-07-09T12:15:37.524+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:15:43.447+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/profiledb.md"
+Based on the ProfileDB MCP Tools Reference documentation, you can retrieve the following from ProfileDB MCP tools:
+
+## 1. **Comprehensive Customer Profile** (via `getProfileDbAccount`)
+   - **Personal Information**: First name, middle name, last name, gender, nickname, date of birth, language
+   - **Contact Details**:
+     - Primary email (with verification status, opt-in/opt-out dates)
+     - Home phone, work phone, mobile phone (with country codes)
+     - Home address and alternate address
+   - **Account Information**: Account number, status, activation source, registration details, account type, predominant property code, global rank, global valuation score, various flags (banned, veteran, deceased, etc.)
+   - **Tier Status**: Tier code and description, tier credits, tier dates, points to next tier, tier goals
+   - **Property Profiles**: Property-specific data including verification status, player type, banned status per property
+   - **Loyalty Enrollment Dates**: Unity and past loyalty program enrollment information
+   - **Profile Metadata**: Profile ID (UUID), modification dates
+
+## 2. **Global Preferences** (via `getProfileDbGlobalPreferences`)
+   - **Mail Delivery Preferences**: Where to send mail (e.g., "Home")
+   - **Communication Preferences by Category**:
+     - Unity Hard Rock: Email and mail preferences
+     - Casinos: Email and mail preferences
+
+Both tools require an **account number** and **correlation ID** as parameters.
+
+*Source: `/apis/profiledb.md`*
+
+--- elapsed: 19.9148192 sec ---
+
+===== Q5 =====
+QUESTION: What is SFMC used for and what MCP tools does it expose?
+--- output ---
+java.exe : time=2026-07-09T12:15:57.283+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:15:59.224+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/sfmc.md"
+Based on the documentation I found, here's what SFMC is used for and what MCP tools it exposes:
+
+## What SFMC is used for:
+
+**SFMC (Salesforce Marketing Cloud)** is used for **customer profile data and marketing automation integration** at Hard Rock. Specifically, it handles:
+
+- **Marketing campaign targeting** and customer segmentation
+- **Email delivery** and subscription management
+- **Customer communication preferences** (email, mail opt-ins)
+- **Customer profile storage** including personal information, contact details, loyalty program status, and tier information
+- **Marketing automation** workflows and customer engagement tracking
+
+## MCP Tools exposed by SFMC:
+
+SFMC exposes **2 MCP tools**:
+
+1. **`getSfmcAccount`** ? Retrieves customer profile data from SFMC including:
+   - Personal information (name, DOB, gender, language)
+   - Contact details (email, phone, address)
+   - Email verification and subscription status
+   - Loyalty program information (Unity enrollment, tier)
+   - Account status and activity (last login, visits, property visits)
+
+2. **`getSfmcGlobalPreferences`** ? Retrieves global marketing preference settings including:
+   - Mail delivery preferences (home/work address)
+   - Email opt-in status by category (Unity Hard Rock, Casinos)
+   - Direct mail opt-in status by category
+
+Both tools require an `accountNumber` and `correlationId` as parameters.
+
+---
+*This information comes from: `apis/sfmc.md`*
+
+--- elapsed: 16.1033625 sec ---
+
+===== Q6 =====
+QUESTION: What ELK index families are queried by the MCP tools, and what do they track?
+--- output ---
+java.exe : time=2026-07-09T12:16:13.694+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:16:17.423+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/index.md"
+time=2026-07-09T12:16:19.680+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/_index.md"
+Based on the documentation I found in `/apis/elk/_index.md`, here are the ELK index families queried by the MCP tools:
+
+## ELK Index Families
+
+1. **`integration-analytics-ciam`** 
+   - **Queried by:** `queryElkCiamAnalyticsLogs` tool
+   - **Tracks:** Authentication and login events, including login attempts, user events, multi-step authentication flows, and account lockouts
+
+2. **`integration-analytics-wso2`**
+   - **Queried by:** `queryElkIntegrationAnalyticsLogs` tool
+   - **Tracks:** API gateway request/response telemetry, including endpoints, latencies, system failures, correlation tracking, and middleware (WSO2 MI) integration events
+
+The CIAM index focuses on customer authentication activities, while the Integration/WSO2 index captures the technical middleware and API gateway traffic that supports those authentication flows and other backend operations.
+
+--- elapsed: 18.0478418 sec ---
+
+===== Q7 =====
+QUESTION: What fields are available in the CIAM logs, and what kind of events do they capture?
+--- output ---
+java.exe : time=2026-07-09T12:16:32.004+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:16:36.492+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/index.md"
+error: Maximum iteration limit exceeded while processing the query. 
+{"steps":[{"tool":{"name":"open_concept","arguments":{"path":"apis/index.md"}},"observation":"# API Reference
+
+* [CIAM MCP Tools Reference](ciam.md) - Reference documentation for CIAM (Customer Identity & Access Management) MCP tools for 
+troubleshooting and account management operations.
+* [Cross-System Account MCP Tools Reference](accounts.md) - MCP tools for updating customer account information across multiple 
+backend systems (CIAM, ProfileDB, Engage, SFMC) through a unified asynchronous interface.
+* [Engage MCP Tools Reference](engage.md) - Reference documentation for Engage Loyalty System MCP tools used for Unity loyalty 
+platform troubleshooting and account management.
+* [MCP Tools Reference ? README](README.md) - Overview of MCP (Model Context Protocol) tools available for troubleshooting and 
+account management across CIAM, ELK, Engage, ProfileDB, SFMC, and other systems.
+* [ProfileDB MCP Tools Reference](profiledb.md) - Reference documentation for ProfileDB MCP tools used for customer profile 
+management and data retrieval across Hard Rock's Unity loyalty platform.
+* [SFMC MCP Tools Reference](sfmc.md) - Reference documentation for Salesforce Marketing Cloud (SFMC) MCP tools for customer 
+profile data and marketing automation integration.
+
+# Subdirectories
+
+* [elk](elk/index.md) - Documentation for querying and interpreting ELK logs across CIAM authentication events, WSO2 integration 
+middleware telemetry, notification systems, and shared MCP tooling infrastructure with real-world scenarios and troubleshooting 
+patterns."},{"tool":{"name":"open_concept","arguments":{"path":"apis/elk/index.md"}},"observation":error FileNotFoundError ("no 
+such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\elk\index.md")},{"tool":{"name":"open_concept","ar
+guments":{"path":"elk/index.md"}},"observation":"# API Reference
+
+* [CIAM Web Authentication Scenarios](ciam-web-scenarios.md) - Authoritative collection of 18 real-world web authentication 
+scenarios with actual ELK log responses, authentication step patterns, failure reasons, and troubleshooting guidance for Unity web 
+login flows.
+* [ELK Logs MCP Tools ? Shared Guide](_index.md) - Shared infrastructure documentation for querying ELK logs (CIAM authentication 
+and Integration/API gateway logs) using MCP tools with Elasticsearch DSL queries.
+* [ELK ? CIAM Logs Reference](ciam-logs.md) - Field documentation and query examples for CIAM authentication logs, covering login 
+events, multi-step authentication flows, and troubleshooting patterns.
+* [ELK ? Integration (WSO2) Logs Reference](integration-logs.md) - Field documentation and query examples for API 
+gateway/middleware (WSO2 MI) logs including request/response telemetry, endpoints, latencies, and correlation tracking.
+* [ELK ? Integration Logs: Notifications](integration-logs-notifications.md) - Field documentation and query examples for 
+notification integration logs including email, SMS, and mobile-push notifications, delivery status, and fault handling through the 
+WSO2 MI notification system."},{"tool":{"name":"open_concept","arguments":{"path":"elk/ciam-logs.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\elk\elk\ciam-logs.md")},{"tool":
+{"name":"open_concept","arguments":{"path":"apis/index.md"}},"observation":error FileNotFoundError ("no such file or directory: 
+C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\elk\apis\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/e
+lk/index.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\ap
+is\elk\apis\elk\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/elk/ciam-logs.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\elk\apis\elk\ciam-logs.md")},{"t
+ool":{"name":"open_concept","arguments":{"path":"elk/index.md"}},"observation":error FileNotFoundError ("no such file or directory: 
+C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\elk\elk\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/in
+dex.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\el
+k\apis\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/index.md"}},"observation":error FileNotFoundError ("no 
+such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\elk\apis\index.md")}]}
+
+--- elapsed: 29.7067742 sec ---
+
+===== Q8 =====
+QUESTION: What kind of information do the WSO2 integration logs contain, such as latency or correlation tracking?
+--- output ---
+java.exe : time=2026-07-09T12:17:02.295+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:17:07.787+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/index.md"
+time=2026-07-09T12:17:10.364+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/integration-logs.md"
+Based on the documentation from **`apis/elk/integration-logs.md`**, WSO2 integration logs contain the following types of information:
+
+## Key Information Types:
+
+### **Latency Metrics:**
+- **`backendLatency`** - Backend call latency in milliseconds
+- **`requestPathLatency`** - Per-path latency (ms) on request processing
+- **`responsePathLatency`** - Per-path latency (ms) on response processing
+- **`roundTripPathLatency`** - End-to-end latency across the entire path (ms)
+
+### **Correlation Tracking:**
+- **`correlationId`** - Cross-service correlation identifier (UUID) that allows you to trace a request across all services and through the entire request flow
+
+### **Request/Response Telemetry:**
+- HTTP status codes (`httpSC`, `httpSCDesc`)
+- Request paths and URL patterns
+- HTTP methods (GET, POST, etc.)
+- Flow direction (`REQUEST_IN`, `REQUEST_OUT`, `RESPONSE_IN`, `RESPONSE_OUT`, `ERROR`, `FAULT`)
+- Timestamps for event tracking
+
+### **Endpoint Information:**
+- API names and versions
+- Service names
+- Backend URLs
+- WSO2 MI domain/deployment identifiers
+- Application names (calling client)
+
+### **Error Tracking:**
+- Internal error codes, messages, and short messages (`intErrorCode`, `intErrorMsg`, `intErrorShortMsg`)
+- External error codes, messages, and short messages (`extErrorCode`, `extErrorMsg`, `extErrorShortMsg`)
+
+### **Customer/Session Context:**
+- User IDs, Profile IDs, Session IDs
+- Object IDs (e.g., customer account numbers)
+- Device IDs and app versions
+
+These logs are stored in the **`integration-analytics-wso2`** index and can be queried using the `queryIntegrationApiLogs` MCP tool.
+
+--- elapsed: 26.6513608 sec ---
+
+===== Q9 =====
+QUESTION: How are notification delivery failures tracked in the integration logs?
+--- output ---
+java.exe : time=2026-07-09T12:17:28.081+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:17:34.347+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/index.md"
+time=2026-07-09T12:17:36.977+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/integration-logs-notifications.md"
+Based on the documentation I found, **notification delivery failures are tracked in the integration logs** through the following mechanisms:
+
+## Key Tracking Fields (from `apis/elk/integration-logs-notifications.md`)
+
+**Flow Direction Field**: The `flowDirection` field indicates the status of notification processing:
+- **`NOTIFICATION_IN`** - Request arrives at the system
+- **`NOTIFICATION_OUT`** - Successfully sent
+- **`NOTIFICATION_FAULT`** - Failed with fault
+
+**Failure-Specific Fields**:
+- **`faultCode`** - Error code identifying the type of failure (e.g., `"10000"` for missing required fields, `"sms-sys-v1-001"` for SMS validation errors)
+- **`faultMessage`** - Detailed error message explaining what went wrong
+
+## Tracking Pattern
+
+For **failed notifications**, the log sequence is:
+1. `NOTIFICATION_IN` event (request received)
+2. `NOTIFICATION_FAULT` event (failure recorded with `faultCode` and `faultMessage`)
+
+For **successful notifications**, the sequence is:
+1. `NOTIFICATION_IN` event
+2. `NOTIFICATION_OUT` event
+
+## Query for Failures
+
+To find notification delivery failures, you can:
+- Filter by `flowDirection: "NOTIFICATION_FAULT"` 
+- Use the `onlyFailed: true` filter parameter
+- Group by `faultCode` to analyze failure patterns
+- Use `correlationId` to trace the complete flow of a specific notification
+
+The system tracks failures for both **transactional emails** (`TRANSACT_EMAIL`) and **SMS** notifications, with detailed fault information preserved in the ELK logs.
+
+--- elapsed: 28.4975529 sec ---
+
+===== Q10 =====
+QUESTION: Give an example of a real-world web authentication failure scenario from the ELK CIAM web scenarios document.
+--- output ---
+java.exe : time=2026-07-09T12:17:56.822+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ssues/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+error: Unable to obtain valid answer from the agent 
+{"steps":[{"tool":{"name":"open_concept","arguments":{"path":"issues/index.md"}},"observation":"# Issue
+
+* [Customer Data Not Correct on Digital Channel](data-incorrect.md) - Diagnostic and resolution workflow for customer-reported 
+personal information discrepancies across digital channels including email, phone, address, and cross-system data inconsistencies.
+* [Customer Free Play Issues](free-play.md) - Diagnostic workflow for resolving customer-reported problems with free play including 
+missing balances, incorrect displays, expiration questions, and discrepancies across digital channels.
+* [Customer Unable to Login](login.md) - Diagnostic workflow and resolution actions for customers unable to log in via website or 
+mobile app, covering authentication failures, account states, and OTP delivery issues.
+* [Customer Unity Points Issues](unity-points.md) - Diagnostic workflow for resolving customer reports of missing, incorrect, or 
+non-displaying Unity Points balances across digital channels.
+
+# Playbook
+
+* [System-Wide Login Analytics and Monitoring](system-login-analytics.md) - Guide for analyzing system-wide login patterns, 
+generating login statistics, and investigating authentication issues affecting multiple users across the entire platform.
+* [View All User Activities and Account History](user-activities.md) - Step-by-step guide for investigating and retrieving a 
+complete timeline of all user activities including logins, API usage, and account 
+events."},{"tool":{"name":"open_concept","arguments":{"path":"issues/system-login-analytics.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\issues\issues\system-login-analytics.
+md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/index.md"}},"observation":error FileNotFoundError ("no such file or 
+directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\issues\apis\index.md")},{"tool":{"name":"open_concept","arguments":{"path
+":"apis/index.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bund
+le\issues\apis\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/index.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\issues\apis\index.md")},error 
+LlmInvalidResponseError ("Unexpected response format from Anthropic API",error IdleTimeoutError ("Idle timeout triggered before 
+initiating inbound response"))]}
+
+--- elapsed: 83.87691 sec ---
+
+===== Q11 =====
+QUESTION: What steps should I take when a customer says they can't log in?
+--- output ---
+java.exe : time=2026-07-09T12:19:20.866+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:19:22.929+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/login.md"
+Based on the troubleshooting playbook, here are the steps you should take when a customer says they can't log in:
+
+## Step-by-Step Process
+
+### 1. **Gather Information**
+- Get the customer's **Account Number** (preferred) or **Email Address**
+- Ask for the **time window** when they attempted to log in
+- Note their **specific symptoms** (e.g., "password incorrect," "didn't get OTP," "account locked")
+
+### 2. **Query Authentication Logs**
+Use two specialized tools to analyze their login attempts:
+
+- **Check successful logins**: Use `getAllSuccessfulLoginsForAnUserInGivenTimePeriod` to see if they had any successful logins
+- **Check failed attempts**: Use `getAllFailedLoginAttemptsForAnUserInGivenTimePeriod` to identify failure reasons
+  - Pay attention to the `claims.failedReason` field
+  - Track the `contextId` to correlate authentication steps
+
+### 3. **Verify Account State**
+Use the `getCiamAccount` tool to check critical account fields:
+- `accountLocked`, `accountDisabled`, `accountActivated`
+- `accountState`, `accountDisabledReason`, `deceased`
+- `playerType` (watch for `"REQINACT"` restriction)
+
+### 4. **Determine Root Cause & Apply Resolution**
+
+Match the symptoms to the appropriate resolution:
+
+- **Invalid credentials** ? Use `resetCiamPassword`
+- **Account locked** ? Use `unlockCiamAccount`
+- **User deleted their account** ? Use `restoreCiamAccount` (if `accountDisabledReason="ONLINE_DELETED"`)
+- **Unactivated account** ? Resend activation email using `activateCiamEmailOnlineSignup` (for PENDING_SR) or `activateCiamEmailOnPropertySignup` (for PENDING_AP)
+  - **Important**: Never unlock PENDING accounts manually - they unlock automatically after activation
+- **OTP delivery issues** ? Check notification logs using `queryIntegrationNotificationLogs`
+- **Deceased, restricted, or data inconsistencies** ? Escalate to SHRSS Integration Team
+
+### 5. **Check Notification Delivery (if applicable)**
+If the issue involves missing OTP or activation emails, use `queryIntegrationNotificationLogs` to verify if messages were sent and delivered.
+
+---
+
+**Answer source**: `issues/login.md` (Customer Unable to Login diagnostic workflow)
+
+--- elapsed: 20.7797385 sec ---
+
+===== Q12 =====
+QUESTION: A customer says their Unity Points balance looks wrong. What's the diagnostic process?
+--- output ---
+java.exe : time=2026-07-09T12:19:41.256+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:19:43.816+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/unity-points.md"
+Based on the knowledge bundle, here's the diagnostic process for Unity Points balance issues:
+
+## Diagnostic Process for Unity Points Issues
+
+**Follow these steps in order:**
+
+### Step 1: Gather Information
+- Account Number (preferred) or Email Address
+- Time window when the issue was noticed
+- Specific symptoms the customer reported
+
+### Step 2: Query Unity Points Balance
+Use the **`getEngageUnityPoints`** tool (documented in `/apis/engage.md`) to get the authoritative balance from the Engage system.
+
+Check these key fields:
+- `balance` ? Current total Unity points
+- `expiringBalance` ? Points expiring soon
+- `expiryDays` ? Days until expiration
+
+### Step 3: Check Integration Logs (if discrepancies exist)
+Use the **`queryIntegrationApiLogs`** tool (documented in `/apis/elk/integration-logs.md`) with:
+- URL pattern: `/profile/{profile-id}/gaming/{account-number}/unity-point`
+- The customer's account number
+- Time range around when the issue occurred
+- Filter for `flowDirection: "RESPONSE_OUT"`
+
+Look for:
+- HTTP status codes (should be "200" for success)
+- Whether API calls are present during the reported timeframe
+- Any errors or latency issues
+
+### Step 4: Determine Root Cause & Escalate
+Compare findings against this diagnostic matrix:
+
+| Issue Type | Indicators | Action |
+|------------|-----------|--------|
+| Frontend/Middleware Issue | API balance ? what customer sees | **Escalate to SHRSS Integration Team** |
+| Customer Dispute | API balance matches display but customer disagrees | **Escalate to SHRSS Integration Team** |
+| API Call Failures | Non-200 HTTP status codes in logs | **Escalate to SHRSS Integration Team** |
+| No API Calls Found | No logs during reported timeframe | **Escalate to SHRSS Integration Team** |
+
+**Important:** All Unity Points issues require escalation. There are no self-service resolution tools available since Unity Points reside only in Engage and cannot be adjusted through standard customer service APIs.
+
+---
+*Source: `issues/unity-points.md`*
+
+--- elapsed: 18.477885 sec ---
+
+===== Q13 =====
+QUESTION: What should I check if a customer's personal information like email, phone, or address looks incorrect across channels?
+--- output ---
+java.exe : time=2026-07-09T12:19:59.559+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:20:02.018+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/data-incorrect.md"
+Based on the knowledge bundle, if a customer's personal information like email, phone, or address looks incorrect across channels, you should follow this diagnostic workflow:
+
+## **Step-by-Step Verification Process:**
+
+### **1. Gather Information**
+- Get the customer's **Account Number** (preferred) or **Email Address**
+- Identify the **specific data** that's incorrect (what they see vs. what it should be)
+- Note which **channel** shows incorrect data (website, mobile app, email communications)
+
+### **2. Verify Current Data Across All Systems**
+
+Check the customer's information in each system to identify discrepancies:
+
+- **Engage (Primary Profile)**: Use `getEngageAccount()` to check:
+  - Email address and verification status
+  - Phone number and country code
+  - Home and alternate addresses
+
+- **CIAM (Authentication System)**: Use `getCiamAccount()` to check:
+  - Login email
+  - Phone for 2FA
+  - Compare with Engage data
+
+- **ProfileDB**: Use `getProfileDbAccount()` to check:
+  - Profile information fields
+  - Personal data consistency
+  - Address and contact information
+
+- **SFMC (Marketing System)**: Use `getSfmcAccount()` to check:
+  - Email subscription status
+  - Marketing communication settings
+  - Email verification status
+
+### **3. Identify the Root Cause**
+
+Compare the data across systems to determine if it's:
+- Wrong in all systems (needs update everywhere)
+- Inconsistent across systems (needs synchronization)
+- Wrong in one specific system (needs targeted update)
+
+This diagnostic approach ensures you understand the full scope of the data issue before making corrections.
+
+---
+**Source**: `issues/data-incorrect.md` - particularly the "Diagnostic Workflow" section (Steps 1-2)
+
+--- elapsed: 17.165738 sec ---
+
+===== Q14 =====
+QUESTION: How do I investigate a customer's free play issues?
+--- output ---
+java.exe : time=2026-07-09T12:20:16.364+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:20:18.098+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/free-play.md"
+Based on the knowledge bundle, here's how to investigate a customer's free play issues:
+
+## Investigation Process
+
+### 1. **Gather Information**
+   - Account Number (preferred) or Email Address
+   - Time window when the issue was noticed
+   - Specific symptoms reported by the customer
+
+### 2. **Query Free Play Balance**
+   - Use the **`getEngageFreePlay`** tool (documented in `/apis/engage.md`)
+   - Check these key fields:
+     - `summary.totalAvailableAmount` ? Total available across all properties
+     - `lastVisitFreePlayPendingDate` ? Check if free play is in settlement period
+     - `daysToNextExpiration` and `totalNextExpiringAmount` ? Expiration tracking
+     - `lastVisitFreePlayEarnedDate` and `lastVisitFreePlayEarnedAmount` ? Recent activity
+     - Property-specific balances in the `balances` array
+
+### 3. **Check Integration Logs (if discrepancies exist)**
+   - Use the **`queryIntegrationApiLogs`** tool
+   - Filter by URL pattern: `/profile/{profile-id}/gaming/{account-number}/free-play`
+   - Set `flowDirection: "RESPONSE_OUT"`
+   - Check for HTTP status codes (200 = success) and API call presence
+
+### 4. **Determine Root Cause**
+   Compare the Engage API balance with what the customer sees:
+   - **Frontend/Middleware Issue**: API balance ? customer's display ? **Escalate**
+   - **Customer Dispute**: API balance matches display but customer disagrees ? **Escalate**
+   - **API Call Failures**: Non-200 HTTP status codes ? **Escalate**
+   - **No API Calls Found**: No logs during reported timeframe ? **Escalate**
+
+### Important Notes:
+- Free play data resides **only in Engage** - no cross-system sync exists
+- **All discrepancies require escalation** to the SHRSS Integration Team
+- There are **no self-service resolution tools** for free play adjustments
+
+**Source:** `issues/free-play.md`
+
+--- elapsed: 18.7241453 sec ---
+
+===== Q15 =====
+QUESTION: How can I view a customer's complete activity history?
+--- output ---
+java.exe : time=2026-07-09T12:20:38.127+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:20:49.218+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/index.md"
+error: Maximum iteration limit exceeded while processing the query. 
+{"steps":[{"tool":{"name":"open_concept","arguments":{"path":"apis/index.md"}},"observation":"# API Reference
+
+* [CIAM MCP Tools Reference](ciam.md) - Reference documentation for CIAM (Customer Identity & Access Management) MCP tools for 
+troubleshooting and account management operations.
+* [Cross-System Account MCP Tools Reference](accounts.md) - MCP tools for updating customer account information across multiple 
+backend systems (CIAM, ProfileDB, Engage, SFMC) through a unified asynchronous interface.
+* [Engage MCP Tools Reference](engage.md) - Reference documentation for Engage Loyalty System MCP tools used for Unity loyalty 
+platform troubleshooting and account management.
+* [MCP Tools Reference ? README](README.md) - Overview of MCP (Model Context Protocol) tools available for troubleshooting and 
+account management across CIAM, ELK, Engage, ProfileDB, SFMC, and other systems.
+* [ProfileDB MCP Tools Reference](profiledb.md) - Reference documentation for ProfileDB MCP tools used for customer profile 
+management and data retrieval across Hard Rock's Unity loyalty platform.
+* [SFMC MCP Tools Reference](sfmc.md) - Reference documentation for Salesforce Marketing Cloud (SFMC) MCP tools for customer 
+profile data and marketing automation integration.
+
+# Subdirectories
+
+* [elk](elk/index.md) - Documentation for querying and interpreting ELK logs across CIAM authentication events, WSO2 integration 
+middleware telemetry, notification systems, and shared MCP tooling infrastructure with real-world scenarios and troubleshooting 
+patterns."},{"tool":{"name":"open_concept","arguments":{"path":"apis/elk/index.md"}},"observation":error FileNotFoundError ("no 
+such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\elk\index.md")},{"tool":{"name":"open_concept","ar
+guments":{"path":"apis/elk/index.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\S
+upportOKF\docs_bundle\apis\apis\elk\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"elk/index.md"}},"observation":"#
+ API Reference
+
+* [CIAM Web Authentication Scenarios](ciam-web-scenarios.md) - Authoritative collection of 18 real-world web authentication 
+scenarios with actual ELK log responses, authentication step patterns, failure reasons, and troubleshooting guidance for Unity web 
+login flows.
+* [ELK Logs MCP Tools ? Shared Guide](_index.md) - Shared infrastructure documentation for querying ELK logs (CIAM authentication 
+and Integration/API gateway logs) using MCP tools with Elasticsearch DSL queries.
+* [ELK ? CIAM Logs Reference](ciam-logs.md) - Field documentation and query examples for CIAM authentication logs, covering login 
+events, multi-step authentication flows, and troubleshooting patterns.
+* [ELK ? Integration (WSO2) Logs Reference](integration-logs.md) - Field documentation and query examples for API 
+gateway/middleware (WSO2 MI) logs including request/response telemetry, endpoints, latencies, and correlation tracking.
+* [ELK ? Integration Logs: Notifications](integration-logs-notifications.md) - Field documentation and query examples for 
+notification integration logs including email, SMS, and mobile-push notifications, delivery status, and fault handling through the 
+WSO2 MI notification system."},{"tool":{"name":"open_concept","arguments":{"path":"apis/README.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\elk\apis\README.md")},{"tool":{"
+name":"open_concept","arguments":{"path":"elk/_index.md"}},"observation":error FileNotFoundError ("no such file or directory: 
+C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\elk\elk\_index.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/i
+ndex.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\e
+lk\apis\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/elk/ciam-logs.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\elk\apis\elk\ciam-logs.md")},{"t
+ool":{"name":"open_concept","arguments":{"path":"apis/README.md"}},"observation":error FileNotFoundError ("no such file or 
+directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\elk\apis\README.md")},{"tool":{"name":"open_concept","arguments":{"p
+ath":"apis/elk/ciam-logs.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith 
+Adikari\SupportOKF\docs_bundle\apis\elk\apis\elk\ciam-logs.md")}]}
+
+--- elapsed: 46.0322563 sec ---
+
+===== Q16 =====
+QUESTION: How do I analyze system-wide login patterns or investigate an authentication issue affecting many users?
+--- output ---
+java.exe : time=2026-07-09T12:21:21.263+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ssues/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:21:24.420+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/system-login-analytics.md"
+Based on the knowledge bundle, here's how to analyze system-wide login patterns or investigate authentication issues affecting many users:
+
+## Answer
+
+Use the **System-Wide Login Analytics and Monitoring** guide (from `issues/system-login-analytics.md`), which provides two primary tools:
+
+### 1. **Analyze Successful Logins**
+Use `getAllSuccessfulLoginsInGivenTimePeriod` to:
+- Get total login counts for any time period
+- Group by application, browser, or operating system
+- Monitor login volumes and patterns
+
+Example:
+```
+getAllSuccessfulLoginsInGivenTimePeriod(
+  timeRange: { start: "now-24h", end: "now" },
+  groupBy: "application"
+)
+```
+
+### 2. **Investigate Failed Login Attempts**
+Use `getAllFailedLoginAttemptsInGivenTimePeriod` to:
+- Identify failure patterns across all users
+- Group by failure reason (recommended), application, or authentication method
+- Get detailed failure records when needed
+
+Example:
+```
+getAllFailedLoginAttemptsInGivenTimePeriod(
+  timeRange: { start: "now-24h", end: "now" },
+  groupBy: "failedReason"
+)
+```
+
+### Key Investigation Steps:
+
+1. **Calculate success rate**: (Successful Logins / Total Attempts) ? 100
+   - Healthy range: 85-95%+
+   - Below 80% indicates system-wide issues
+
+2. **Analyze failure reasons** to identify:
+   - Spikes in "Invalid Credentials" (possible attacks)
+   - "Account Locked" patterns (brute-force attempts)
+   - Unusual system errors
+
+3. **Use groupBy strategically**:
+   - Group by `application` to find app-specific issues
+   - Group by `failedReason` for security analysis
+   - Group by `browser` or `operatingSystem` for platform issues
+
+4. **Important**: Analyze `contextId` fields to distinguish between users who eventually succeeded after retries vs. truly failed authentication attempts.
+
+**Source**: `issues/system-login-analytics.md`
+
+--- elapsed: 19.9770974 sec ---
+
+===== Q17 =====
+QUESTION: What are the login eligibility rules? Who is allowed or restricted from logging in?
+--- output ---
+java.exe : time=2026-07-09T12:21:41.738+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="rules/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...rules/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+error: Maximum iteration limit exceeded while processing the query. 
+{"steps":[{"tool":{"name":"open_concept","arguments":{"path":"rules/index.md"}},"observation":"# Rule
+
+* [Login Rules Reference](login.md) - Business rules governing login eligibility, restrictions, and 
+exceptions."},{"tool":{"name":"open_concept","arguments":{"path":"rules/login.md"}},"observation":error FileNotFoundError ("no such 
+file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\rules\login.md")},{"tool":{"name":"open_concept","arguments
+":{"path":"rules/index.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\
+docs_bundle\rules\rules\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"rules/index.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\rules\index.md")},{"tool":{"nam
+e":"open_concept","arguments":{"path":"rules/index.md"}},"observation":error FileNotFoundError ("no such file or directory: 
+C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\rules\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"rules/in
+dex.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\r
+ules\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"rules/index.md"}},"observation":error FileNotFoundError ("no 
+such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\rules\index.md")},{"tool":{"name":"open_concept","argu
+ments":{"path":"rules/index.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\Suppor
+tOKF\docs_bundle\rules\rules\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"rules/index.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\rules\index.md")},{"tool":{"nam
+e":"open_concept","arguments":{"path":"rules/index.md"}},"observation":error FileNotFoundError ("no such file or directory: 
+C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\rules\index.md")}]}
+
+--- elapsed: 42.1747276 sec ---
+
+===== Q18 =====
+QUESTION: Is there a connection between the login rules and the login issue troubleshooting guide? Explain how they relate.
+--- output ---
+java.exe : time=2026-07-09T12:22:23.681+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="rules/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...rules/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+error: Maximum iteration limit exceeded while processing the query. 
+{"steps":[{"tool":{"name":"open_concept","arguments":{"path":"rules/index.md"}},"observation":"# Rule
+
+* [Login Rules Reference](login.md) - Business rules governing login eligibility, restrictions, and 
+exceptions."},{"tool":{"name":"open_concept","arguments":{"path":"rules/login.md"}},"observation":error FileNotFoundError ("no such 
+file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\rules\login.md")},{"tool":{"name":"open_concept","arguments
+":{"path":"rules/index.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\
+docs_bundle\rules\rules\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"rules/index.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\rules\index.md")},{"tool":{"nam
+e":"open_concept","arguments":{"path":"rules/index.md"}},"observation":error FileNotFoundError ("no such file or directory: 
+C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\rules\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"rules/in
+dex.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\r
+ules\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"rules/index.md"}},"observation":error FileNotFoundError ("no 
+such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\rules\index.md")},{"tool":{"name":"open_concept","argu
+ments":{"path":"rules/index.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\Suppor
+tOKF\docs_bundle\rules\rules\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"rules/index.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\rules\index.md")},{"tool":{"nam
+e":"open_concept","arguments":{"path":"rules/index.md"}},"observation":error FileNotFoundError ("no such file or directory: 
+C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\rules\index.md")}]}
+
+--- elapsed: 34.9512874 sec ---
+
+===== Q19 =====
+QUESTION: What categories of issues does the troubleshooting playbook cover?
+--- output ---
+java.exe : time=2026-07-09T12:22:58.808+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Based on the troubleshooting playbook, it covers **three main categories of issues**:
+
+1. **Authentication & Access** - covering login problems
+2. **Loyalty Program & Rewards** - covering Unity Points and Free Play issues
+3. **Data Management & Profile** - covering data accuracy on digital channels and user activity/account history
+
+This information comes from the `troubleshooting_playbook.md` concept, which serves as an index organizing the modular issue runbooks by these categories.
+
+--- elapsed: 9.5298391 sec ---
+
+===== Q20 =====
+QUESTION: If I'm not sure which runbook to use for a customer issue, where should I start?
+--- output ---
+java.exe : time=2026-07-09T12:23:07.861+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Based on the knowledge bundle, if you're not sure which runbook to use for a customer issue, you should start with the **Troubleshooting Playbook** (`troubleshooting_playbook.md`).
+
+This playbook serves as an index of all modular issue runbooks organized by category, including:
+- **Authentication & Access** (login issues)
+- **Loyalty Program & Rewards** (Unity Points, Free Play)
+- **Data Management & Profile** (data discrepancies, user activities)
+
+The Troubleshooting Playbook will help you identify the right specific runbook based on the category of the customer's issue.
+
+--- elapsed: 8.88005 sec ---
+
+===== Q21 =====
+QUESTION: A customer can't log in AND their Unity Points look wrong. Which two runbooks should I combine, and what's the first diagnostic step for each?
+--- output ---
+java.exe : time=2026-07-09T12:23:17.566+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T12:23:20.728+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/login.md"
+time=2026-07-09T12:23:51.932+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/unity-points.md"
+error: Maximum iteration limit exceeded while processing the query. 
+{"steps":[{"tool":{"name":"open_concept","arguments":{"path":"troubleshooting_playbook.md"}},"observation":"---
+type: "Playbook"
+title: "Troubleshooting Playbook"
+description: "An index of modular issue runbooks organized by category, including authentication, loyalty programs, and data 
+management topics."
+tags: ["troubleshooting", "runbooks", "issues", "index", "support"]
+timestamp: 2026-07-09T06:40:03Z
+---
+
+# Troubleshooting Playbook
+
+This index links to modular issue runbooks under `docs/issues/`. Issues are organized by category.
+
+---
+
+## Authentication & Access
+
+- [Customer Not Able to Login](issues/login.md)
+
+---
+
+## Loyalty Program & Rewards
+
+- [Customer Unity Points Issues](issues/unity-points.md)
+- [Customer Free Play Issues](issues/free-play.md)
+
+---
+
+## Data Management & Profile
+
+- [Customer Data Not Correct on Digital Channel](issues/data-incorrect.md)
+- [View All User Activities and Account 
+History](issues/user-activities.md)"},{"tool":{"name":"open_concept","arguments":{"path":"issues/login.md"}},"observation":"---
+type: "Issue"
+title: "Customer Unable to Login"
+description: "Diagnostic workflow and resolution actions for customers unable to log in via website or mobile app, covering 
+authentication failures, account states, and OTP delivery issues."
+tags: ["login", "authentication", "ciam", "troubleshooting", "diagnostics"]
+timestamp: 2026-07-09T06:39:46Z
+---
+
+---
+id: login
+title: "Customer Unable to Login"
+created: 2025-10-06
+version: 4.0
+severity: high
+systems:
+  - CIAM
+  - API Gateway
+  - Messaging (Email/SMS)
+  - ELK
+tags: ["login", "authentication", "ciam", "elk"]
+---
+
+## Description
+This issue occurs when a customer reports being **unable to log in** via the website or mobile app.  
+The AI agent or support engineer should identify the cause of the login failure and apply the correct resolution.
+
+---
+
+## Typical User Symptoms
+Customers usually describe login issues without sharing error codes:
+- "I can't log in."  
+- "It says my password is incorrect." / "I reset it and it still fails."
+- "I didn't get the OTP."  
+- "My account seems locked."  
+- "I activated my account but still can't log in."  
+
+---
+
+## Diagnostic Workflow (Strictly follow this steps)
+
+### Step 1: Gather Information
+- **Account Number** (preferred) or **Email Address**
+- **Time window** when login was attempted
+- **Specific symptoms** reported by customer
+
+### Step 2: Query Authentication(CIAM) Logs
+**Primary Source:** [`../apis/elk/ciam-logs.md`](../apis/elk/ciam-logs.md) - CIAM authentication events
+
+**Tools:** Use the following specialized tools to analyze login attempts:
+
+#### A) Check Successful Logins
+**Tool:** `getAllSuccessfulLoginsForAnUserInGivenTimePeriod`
+
+**How to use:**
+```
+userIdentifier: {
+  accountNumber: "<ACCOUNT_NUMBER>"  // or use emailAddress or userId
+}
+
+timeRange: {
+  start: "<INVESTIGATION_START_TIME>",  // ISO 8601 or relative like "now-24h"
+  end: "<INVESTIGATION_END_TIME>"      // ISO 8601 or relative like "now"
+}
+
+includeDetails: true
+limitRecords: 100
+```
+
+**This tool will return:**
+- All successful login events (`event: "login"`, `success: "true"`)
+- Authentication flow details including timestamps, application sources, and session info
+- Complete login history for the investigation period
+
+#### B) Check Failed Login Attempts
+**Tool:** `getAllFailedLoginAttemptsForAnUserInGivenTimePeriod`
+
+**How to use:**
+```
+userIdentifier: {
+  accountNumber: "<ACCOUNT_NUMBER>"  // or use emailAddress or userId
+}
+
+timeRange: {
+  start: "<INVESTIGATION_START_TIME>",  // ISO 8601 or relative like "now-24h"
+  end: "<INVESTIGATION_END_TIME>"      // ISO 8601 or relative like "now"
+}
+
+includeDetails: true
+groupBy: "failedReason"
+limitRecords: 100
+```
+
+**?? CRITICAL: This tool returns three datasets:**
+1. **failedIndualLoginSteps** - Login steps that failed (`event: "login-step"`, `success: "false"`)
+2. **failedFinalLoginAttempts** - Final login attempts that failed (`event: "login"`, `success: "false"`)
+3. **successfulLogins** - Successful logins in the same period for context
+
+**You MUST analyze the `contextId` field to determine:**
+- Which login-step failures eventually led to success (same `contextId` appears in both failed steps and successful logins)
+- Which authentication attempts were abandoned (contextId only in failed steps/logins)
+
+**Key Fields to Review:**
+- `claims.failedReason` - Explains why authentication failed
+- `contextId` - Correlates authentication steps to final login outcome
+- `stepAuthenticator` - Shows which authentication method was used
+- `@timestamp` - Timing analysis for retry patterns
+
+**Replace these placeholders:**
+- `<ACCOUNT_NUMBER>` - The customer's account number
+- `<INVESTIGATION_START_TIME>` - Start of time window (ISO 8601 format or relative like "now-24h")
+- `<INVESTIGATION_END_TIME>` - End of time window (ISO 8601 format or relative like "now")
+
+### Step 3: Verify Account State
+**API Reference:** [`../apis/ciam.md`](../apis/ciam.md) - Get User endpoint using `getCiamAccount`.
+
+**Key Fields to Check:**
+- `accountLocked`, `accountDisabled`, `accountActivated`
+- `accountState`, `accountDisabledReason`, `deceased`
+- `playerType` (check for `"REQINACT"` restriction)
+
+### Step 4: Determine Root Cause & Apply Resolution
+Use the diagnostic matrix below to identify the issue and resolution.
+
+#### Diagnostic Matrix
+
+| **Issue Type** | **CIAM API Indicators** | **ELK Log Indicators** | **Resolution** |
+|----------------|-------------------------|-------------------------|----------------|
+| **Invalid Credentials** | `accountLocked=false`, `accountDisabled=false` | `claims.failedReason="Invalid Credentials"` or 
+`"USER_NOT_FOUND"` | **D) Reset Password** |
+| **Account Locked** | `accountLocked=true` | `claims.failedReason="Account is Locked"` | **A) Unlock Account** |
+| **Account Disabled** | `accountDisabled=true` | `claims.failedReason="Account is disabled"` | **E) Escalate** (admin-disabled) |
+| **User-Deleted Account** | `accountDisabled=true`, `accountDisabledReason="ONLINE_DELETED"` | `claims.failedReason="Account is 
+online deleted"` | **C) Restore Account** |
+| **Unactivated (Online)** | `accountActivated=false`, `accountState="PENDING_SR"` | `claims.failedReason="PENDING_SR"` | **B) 
+Resend Activation** |
+| **Unactivated (Property)** | `accountActivated=false`, `accountState="PENDING_AP"` | `claims.failedReason="PENDING_AP"` | **B) 
+Resend Activation** |
+| **Deceased Account** | `deceased=true` | `claims.failedReason="Account is deceased"` | **E) Escalate** |
+| **Restricted Account** | `playerType="REQINACT"` | `claims.failedReason="Account is restricted: REQINACT"` | **E) Escalate** |
+| **OTP Delivery Issues** | Account state normal | `stepAuthenticator="SMSOTP"/"EmailOTP"` with `success="false"` | **B) Resend 
+Activation** or **D) Reset Password** |
+| **Incomplete Authentication** | Account state normal | `login-step` events present but **no `login` event** | **Investigate 
+Flow** (see Pattern Recognition) |
+| **Data Inconsistency** | `accountActivated=false` but `accountState` not `PENDING_*` | Variable | **E) Escalate** |
+
+### Step 5: Check Notification Delivery (If the issue involves Email or SMS OTP delivery issues)
+
+**Reference:** [`../apis/elk/integration-logs-notifications.md`](../apis/elk/integration-logs-notifications.md) - Notification 
+delivery logs
+
+**Tool:** `queryIntegrationNotificationLogs`
+
+**How to use the tool:**
+
+Call `queryIntegrationNotificationLogs` with these parameters:
+
+```
+timeRange: {
+  start: "<INVESTIGATION_START_TIME>",  // ISO 8601 format or relative like "now-24h"
+  end: "<INVESTIGATION_END_TIME>"      // ISO 8601 format or relative like "now"
+}
+
+filters: {
+  notificationType: "TRANSACT_EMAIL" or "SMS",  // Choose based on issue context
+  notificationTo: "<CUSTOMER_EMAIL_OR_PHONE>",
+  templateName: "UL_Passwordless_Login_Email_OTP" or "UL_2FA",  // Choose appropriate template
+  onlyFailed: true  // Set to true to see only failed deliveries
+}
+
+maxResults: 50
+```
+
+**Replace these placeholders:**
+- `<INVESTIGATION_START_TIME>` - Start of time window (ISO 8601 format or relative like "now-24h")
+- `<INVESTIGATION_END_TIME>` - End of time window (ISO 8601 format or relative like "now")
+- `<CUSTOMER_EMAIL_OR_PHONE>` - Customer's email address or phone number
+
+**Common Template Names:**
+- Email OTP: `"UL_Passwordless_Login_Email_OTP"`
+- SMS OTP: `"UL_2FA"`
+- Activation emails: Check template list in notification documentation
+- `flowDirection: "NOTIFICATION_FAULT"` (delivery failures)
+
+**Use Cases:**
+- Customer reports "didn't receive OTP email/SMS"
+- Activation emails not arriving
+- Password reset emails missing
+- Verify if notification was sent vs. delivery failure
+
+---
+
+## Authentication Flow Pattern Recognition
+
+### Successfull Flow Indicators
+- **Complete authentication**: `login-step` events followed by `login` event showing `success="true"` (with same `contextId`)
+- **Multi-step progression**: `SHRSSIdentifierHandler` ? authentication method ? `SHRSSFirstTimeAuthenticator`
+- **Successful retry**: Multiple `login-step` events with final `login` event showing `success="true"` (with same `contextId`)
+
+### Problematic Flow Indicators  
+- **Abandoned authentication**: `login-step` events without corresponding `login` event (with same `contextId`)
+- **Authentication stuck**: Steps stop before completion handler
+- **Session correlation issues**: Missing or inconsistent `contextId` values
+- **Unexpected sequences**: Non-standard `stepAuthenticator` progression
+
+### Advanced Troubleshooting
+For detailed pattern analysis with real log examples, see:
+**[CIAM Web Authentication Scenarios](../apis/elk/ciam-web-scenarios.md)** - 18 real troubleshooting scenarios with complete log 
+examples
+
+---
+
+## Resolution Actions
+
+### A) Unlock Account
+**Tool:** `unlockCiamAccount`
+**Reference:** [`../apis/ciam.md`](../apis/ciam.md)
+**Expected Result:** Account unlocked, customer can retry login
+
+### B) Resend Activation Link
+**Tools:**
+- **Online Signup:** `activateCiamEmailOnlineSignup` (for `PENDING_SR` accounts)
+- **On-Property Signup:** `activateCiamEmailOnPropertySignup` (for `PENDING_AP` accounts)
+
+**Reference:** [`../apis/ciam.md`](../apis/ciam.md)
+**Usage Guide:**
+- Use **online-signup** tool for accounts with `accountState="PENDING_SR"`
+- Use **on-property-signup** tool for accounts with `accountState="PENDING_AP"`
+- Both tools will send appropriate activation email template to customer.
+
+**?? Critical - Do NOT Unlock PENDING Accounts:**
+- `PENDING_SR` and `PENDING_AP` accounts are intentionally locked until activation is completed
+- **Never use `unlockCiamAccount` on PENDING accounts** - this will break the activation workflow
+- The activation tools (`activateCiamEmailOnlineSignup` / `activateCiamEmailOnPropertySignup`) are designed to work on locked 
+accounts
+- The account will automatically unlock when the customer clicks the activation link and completes the process
+- Manually unlocking a PENDING account before activation will cause system inconsistencies
+
+**Expected Result:** Activation email sent, advise customer to check spam folder
+
+### C) Restore Deleted Account
+**Tool:** `restoreCiamAccount`
+**Condition:** Only if `accountDisabledReason="ONLINE_DELETED"`
+**Reference:** [`../apis/ciam.md`](../apis/ciam.md)
+**Expected Result:** Account restored to active state
+
+### D) Reset Password
+**Tool:** `resetCiamPassword`
+**Reference:** [`../apis/ciam.md`](../apis/ciam.md)
+**Important:** Account must not be locked or disabled - use **A) Unlock Account** first if needed
+**Expected Result:** Password reset email sent
+
+### E) Escalate to SHRSS Integration Team
+**When to Escalate:**
+- Data inconsistencies (`accountActivated=true` + `accountState="PENDING_*"`)
+- Restricted accounts (`playerType="REQINACT"`)
+- Deceased accounts attempting authentication
+- Authentication flow anomalies (missing `login` events with successful steps)
+- Unexpected `stepAuthenticator` sequences
+
+**What to Include:**
+- Account Number and relevant identifiers
+- Data inconsistencies found
+- Authentication flow anomalies
+- Relevant log entries with timestamps
+
+---
+
+## AI Agent Guidelines
+
+### ? Recommended Query Approach
+1. **Start with user-centric fields**: `claims.accountNumber`, `claims.emailAddress`
+2. **Always filter by event type**: `event: "login"` or `event: "login-step"`
+3. **Use appropriate time windows**: Recent attempts (last 2-24 hours typically)
+4. **Sort by timestamp**: `@timestamp` desc for chronological analysis
+5. **Correlate by session**: Use `contextId` to group authentication steps
+
+### ? Fields to Avoid
+- **Environment-specific**: `environment`, `serviceProvider` (vary across deployments)
+- **Unreliable data**: `claims.failedAttemptRatio`, `region`, `actionTimestamp`
+- **Redundant fields**: `eventType` (use `event` instead)
+
+### ? Pattern Matching Strategy
+1. **Check for completion**: Look for `login` event after `login-step` events
+2. **Trace authentication flow**: Follow `stepAuthenticator` progression
+3. **Identify retry attempts**: Multiple events with same `contextId` and step
+4. **Validate business rules**: Cross-reference with account state from CIAM API
+---
+
+## Reference Documentation
+
+### ELK Logging
+- **Shared guide**: [`../apis/elk/_index.md`](../apis/elk/_index.md) - Base query structure
+- **CIAM logs**: [`../apis/elk/ciam-logs.md`](../apis/elk/ciam-logs.md) - Authentication events
+- **CIAM scenarios**: [`../apis/elk/ciam-web-scenarios.md`](../apis/elk/ciam-web-scenarios.md) - 18 real examples
+- **Integration logs**: [`../apis/elk/integration-logs.md`](../apis/elk/integration-logs.md) - API gateway events
+
+### Business Logic
+- **Login rules**: [`../rules/login.md`](../rules/login.md) - Business rules and account states
+- **CIAM API**: [`../apis/ciam.md`](../apis/ciam.md) - Account management 
+operations"},{"tool":{"name":"open_concept","arguments":{"path":"issues/unity-points.md"}},"observation":error FileNotFoundError 
+("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\issues\issues\unity-points.md")},{"tool":{"name":"open_
+concept","arguments":{"path":"issues/unity-points.md"}},"observation":error FileNotFoundError ("no such file or directory: 
+C:\Users\Damsith Adikari\SupportOKF\docs_bundle\issues\issues\unity-points.md")},{"tool":{"name":"open_concept","arguments":{"path":
+"issues/unity-points.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\do
+cs_bundle\issues\issues\unity-points.md")},{"tool":{"name":"open_concept","arguments":{"path":"issues/index.md"}},"observation":erro
+r FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\issues\issues\index.md")},{"tool":{
+"name":"open_concept","arguments":{"path":"issues/index.md"}},"observation":error FileNotFoundError ("no such file or directory: 
+C:\Users\Damsith Adikari\SupportOKF\docs_bundle\issues\issues\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"issues
+/index.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\issu
+es\issues\index.md")},{"tool":{"name":"open_concept","arguments":{"path":"issues/index.md"}},"observation":error FileNotFoundError 
+("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\issues\issues\index.md")},{"tool":{"name":"open_concept
+","arguments":{"path":"issues/index.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith 
+Adikari\SupportOKF\docs_bundle\issues\issues\index.md")}]}
+
+--- elapsed: 40.6556978 sec ---
+
+===== Q22 =====
+QUESTION: What's the difference between the CIAM MCP tools and the ELK CIAM logs? When would I use one versus the other?
+--- output ---
+java.exe : time=2026-07-09T12:23:57.849+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+error: Maximum iteration limit exceeded while processing the query. 
+{"steps":[{"tool":{"name":"open_concept","arguments":{"path":"apis/index.md"}},"observation":"# API Reference
+
+* [CIAM MCP Tools Reference](ciam.md) - Reference documentation for CIAM (Customer Identity & Access Management) MCP tools for 
+troubleshooting and account management operations.
+* [Cross-System Account MCP Tools Reference](accounts.md) - MCP tools for updating customer account information across multiple 
+backend systems (CIAM, ProfileDB, Engage, SFMC) through a unified asynchronous interface.
+* [Engage MCP Tools Reference](engage.md) - Reference documentation for Engage Loyalty System MCP tools used for Unity loyalty 
+platform troubleshooting and account management.
+* [MCP Tools Reference ? README](README.md) - Overview of MCP (Model Context Protocol) tools available for troubleshooting and 
+account management across CIAM, ELK, Engage, ProfileDB, SFMC, and other systems.
+* [ProfileDB MCP Tools Reference](profiledb.md) - Reference documentation for ProfileDB MCP tools used for customer profile 
+management and data retrieval across Hard Rock's Unity loyalty platform.
+* [SFMC MCP Tools Reference](sfmc.md) - Reference documentation for Salesforce Marketing Cloud (SFMC) MCP tools for customer 
+profile data and marketing automation integration.
+
+# Subdirectories
+
+* [elk](elk/index.md) - Documentation for querying and interpreting ELK logs across CIAM authentication events, WSO2 integration 
+middleware telemetry, notification systems, and shared MCP tooling infrastructure with real-world scenarios and troubleshooting 
+patterns."},{"tool":{"name":"open_concept","arguments":{"path":"apis/ciam.md"}},"observation":error FileNotFoundError ("no such 
+file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\ciam.md")},{"tool":{"name":"open_concept","arguments":{
+"path":"apis/ciam.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_
+bundle\apis\apis\ciam.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/ciam.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\ciam.md")},{"tool":{"name":
+"open_concept","arguments":{"path":"apis/ciam.md"}},"observation":error FileNotFoundError ("no such file or directory: 
+C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\ciam.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/ciam.m
+d"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\ci
+am.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/ciam.md"}},"observation":error FileNotFoundError ("no such file 
+or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\ciam.md")},{"tool":{"name":"open_concept","arguments":{"path
+":"apis/ciam.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundl
+e\apis\apis\ciam.md")},{"tool":{"name":"open_concept","arguments":{"path":"apis/ciam.md"}},"observation":error FileNotFoundError 
+("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\apis\apis\ciam.md")},{"tool":{"name":"open_concept","ar
+guments":{"path":"apis/ciam.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith 
+Adikari\SupportOKF\docs_bundle\apis\apis\ciam.md")}]}
+
+--- elapsed: 34.924453 sec ---
+
+===== Q23 =====
+QUESTION: What is the refund policy for cancelled orders?
+--- output ---
+java.exe : time=2026-07-09T12:24:32.875+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="rules/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...rules/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+error: Maximum iteration limit exceeded while processing the query. 
+{"steps":[{"tool":{"name":"open_concept","arguments":{"path":"rules/index.md"}},"observation":"# Rule
+
+* [Login Rules Reference](login.md) - Business rules governing login eligibility, restrictions, and 
+exceptions."},{"tool":{"name":"open_concept","arguments":{"path":"troubleshooting_playbook.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\troubleshooting_playbook.md")},
+{"tool":{"name":"open_concept","arguments":{"path":"rules/index.md"}},"observation":error FileNotFoundError ("no such file or 
+directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\rules\index.md")},{"tool":{"name":"open_concept","arguments":{"path
+":"troubleshooting_playbook.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\Suppor
+tOKF\docs_bundle\rules\troubleshooting_playbook.md")},{"tool":{"name":"open_concept","arguments":{"path":"issues/index.md"}},"observ
+ation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\issues\index.md")}
+,{"tool":{"name":"open_concept","arguments":{"path":"troubleshooting_playbook.md"}},"observation":error FileNotFoundError ("no such 
+file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\troubleshooting_playbook.md")},{"tool":{"name":"open_concep
+t","arguments":{"path":"troubleshooting_playbook.md"}},"observation":error FileNotFoundError ("no such file or directory: 
+C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\troubleshooting_playbook.md")},{"tool":{"name":"open_concept","arguments":{"pa
+th":"troubleshooting_playbook.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\Supp
+ortOKF\docs_bundle\rules\troubleshooting_playbook.md")},{"tool":{"name":"open_concept","arguments":{"path":"troubleshooting_playbook
+.md"}},"observation":error FileNotFoundError ("no such file or directory: C:\Users\Damsith Adikari\SupportOKF\docs_bundle\rules\trou
+bleshooting_playbook.md")},{"tool":{"name":"open_concept","arguments":{"path":"troubleshooting_playbook.md"}},"observation":error 
+FileNotFoundError ("no such file or directory: C:\Users\Damsith 
+Adikari\SupportOKF\docs_bundle\rules\troubleshooting_playbook.md")}]}
+
+--- elapsed: 31.9462613 sec ---
+
+===== Q24 =====
+QUESTION: How many badge classes are there on Stack Overflow?
+--- output ---
+java.exe : time=2026-07-09T12:25:04.471+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:40 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+I can see this knowledge bundle is about Hard Rock's customer systems (CIAM, loyalty programs, APIs, etc.), not about Stack Overflow. The question you're asking about Stack Overflow badge classes doesn't appear to be related to the content in this knowledge bundle.
+
+This bundle contains documentation for:
+- Customer Identity & Access Management (CIAM)
+- Loyalty programs (Engage/Unity)
+- Marketing automation (SFMC)
+- Troubleshooting playbooks
+- Various APIs and logging systems
+
+There's no information about Stack Overflow or its badge system here. You may have meant to ask a different question about this Hard Rock systems documentation, or you might be looking at the wrong knowledge bundle for Stack Overflow information.
+
+Would you like to ask a question about the Hard Rock customer systems instead?
+
+--- elapsed: 11.6009603 sec ---
+
+ALL DONE: 24 questions run.

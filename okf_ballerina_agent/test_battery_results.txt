@@ -1,0 +1,1154 @@
+===== Q1 =====
+QUESTION: What MCP tools are available for CIAM, and what do they do?
+--- output ---
+java.exe : time=2026-07-09T15:01:08.637+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:01:10.822+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/ciam.md"
+Based on the CIAM MCP Tools Reference documentation (**apis/ciam.md**), here are the available MCP tools for CIAM and what they do:
+
+## CIAM MCP Tools
+
+1. **getCiamAccount** ? Retrieve complete CIAM account details including profile information, account state, authentication status, and all account identifiers.
+
+2. **unlockCiamAccount** ? Unlock a locked account (typically locked due to multiple failed login attempts or admin action).
+
+3. **lockCiamAccount** ? Lock an account (for security concerns, suspected fraud, or temporary lockout requests).
+
+4. **activateCiamAccount** ? Manually activate a CIAM account, bypassing the normal email activation workflow (useful for accounts in PENDING_AP or PENDING_SR states).
+
+5. **disableCiamAccount** ? Disable a CIAM account (for account closure requests, compliance requirements, or security incidents).
+
+6. **enableCiamAccount** ? Re-enable a previously disabled account (to reactivate closed accounts or reverse accidental disablements).
+
+7. **restoreCiamAccount** ? Restore a previously online-deleted account (only works for accounts deleted through online channels).
+
+8. **activateCiamEmailOnlineSignup** ? Send activation email for accounts in PENDING_SR state (for customers who completed online registration but haven't received or can't find their activation email).
+
+9. **activateCiamEmailOnPropertySignup** ? Send activation email for accounts in PENDING_AP state (for customers who signed up at a physical property location but haven't activated their account).
+
+10. **resetCiamPassword** ? Send password reset email (for customers who forgot their password or need to reset it for security reasons).
+
+These tools are used for troubleshooting authentication issues, managing account lifecycle states, and resolving customer access problems across the CIAM (Customer Identity & Access Management) system.
+
+--- elapsed: 16.7655606 sec ---
+
+===== Q2 =====
+QUESTION: How do I update a customer's email address across all backend systems?
+--- output ---
+java.exe : time=2026-07-09T15:01:26.445+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:01:28.842+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/accounts.md"
+Based on the documentation I found, here's how to update a customer's email address across all backend systems:
+
+## Use the `updateAccountPersonalInfo` MCP Tool
+
+**Tool:** `updateAccountPersonalInfo`
+
+**Parameters:**
+- **accountNumber**: The customer's account number (required)
+- **targetSystem**: `"all"` (to update across all systems: CIAM, ProfileDB, Engage, and SFMC)
+- **payload**: 
+  ```
+  primaryEmail:
+    email: "newemail@example.com"
+    verified: 0
+    status: "S"
+  ```
+- **correlationId**: A correlation ID for tracing the request
+
+**Example:**
+```
+Tool: updateAccountPersonalInfo
+Parameters:
+  accountNumber: "123456789"
+  targetSystem: "all"
+  payload:
+    primaryEmail:
+      email: "newemail@example.com"
+      verified: 0
+      status: "S"
+  correlationId: "your-correlation-id"
+```
+
+## Important Notes:
+
+1. **Asynchronous Processing**: The update is queued immediately and processed in the background. It may take several minutes (2-5 minutes) to propagate across all systems.
+
+2. **Email Status Fields**:
+   - `verified: 0` = Email requires verification (customer needs to verify)
+   - `verified: 1` = Email has been verified
+   - `status: "S"` = Subscribed to marketing
+   - `status: "U"` = Unsubscribed
+   - `status: "B"` = Bounced
+
+3. **Always use `targetSystem: "all"`** to ensure consistency across all backend systems (CIAM, ProfileDB, Engage, and SFMC).
+
+This information comes from `/apis/accounts.md`.
+
+--- elapsed: 16.5207483 sec ---
+
+===== Q3 =====
+QUESTION: What loyalty system does the Engage API manage, and what operations does it support?
+--- output ---
+java.exe : time=2026-07-09T15:01:41.871+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:01:45.230+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/engage.md"
+Based on the documentation I found, here's the answer to your question:
+
+The **Engage API** manages the **Unity loyalty platform** for Hard Rock's loyalty program system.
+
+## Operations Supported
+
+The Engage API supports the following operations:
+
+1. **getEngageAccount** ? Retrieves comprehensive loyalty account profiles including personal information, tier status, property profiles, communication preferences, and consents
+
+2. **getEngageUnityPoints** ? Gets Unity points balance, expiring balance amounts, and days until points expiration
+
+3. **getEngageFreePlay** ? Retrieves free play balances across all properties, including earned amounts, available amounts, expiration details, and settlement status
+
+4. **getEngageTier** ? Gets account tier information including current tier level, tier credits, progression details, and tier matching status
+
+These operations are designed for troubleshooting and account management purposes, allowing support agents to verify customer loyalty data, investigate discrepancies, and answer questions about points, free play, tier status, and account details.
+
+**Source:** `/apis/engage.md`
+
+--- elapsed: 16.3598679 sec ---
+
+===== Q4 =====
+QUESTION: What can I retrieve from the ProfileDB MCP tools?
+--- output ---
+java.exe : time=2026-07-09T15:01:58.500+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:02:00.599+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/profiledb.md"
+Based on the ProfileDB MCP Tools Reference documentation, you can retrieve the following information from ProfileDB MCP tools:
+
+## From `getProfileDbAccount`:
+- **Personal Information**: First name, middle name, last name, gender, nickname, date of birth, language
+- **Enrollment Details**: Unity enrolled date, past loyalty program information
+- **Contact Information**:
+  - Primary email (with verification status, opt-in/opt-out dates)
+  - Home phone, work phone, mobile phone (with country codes)
+  - Home address and alternate address
+- **Account Details**: Account number, activation source, account status, player type, registration date, account type, predominant property code, global rank, global valuation score, and various flags (casino identity verified, banned, gaming patron, wallet, veteran, deceased, credit card, HR digital member)
+- **Tier Status**: Tier code, tier description (e.g., "Icon"), tier credits, tier start/end dates, next tier information, credits needed for next tier
+- **Property Profiles**: Property-specific information including property code, verification status, and various property-level flags
+
+## From `getProfileDbGlobalPreferences`:
+- **Communication Preferences**:
+  - Mail delivery preference (e.g., "Home")
+  - Unity Hard Rock preferences (send mail, send email)
+  - Casinos preferences (send mail, send email)
+
+Both tools require an **account number** and **correlation ID** as parameters.
+
+*This information comes from `/apis/profiledb.md`*
+
+--- elapsed: 15.9168032 sec ---
+
+===== Q5 =====
+QUESTION: What is SFMC used for and what MCP tools does it expose?
+--- output ---
+java.exe : time=2026-07-09T15:02:13.935+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:02:16.449+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/sfmc.md"
+Based on the documentation, here's what SFMC is used for and what MCP tools it exposes:
+
+## What SFMC is Used For
+
+**SFMC (Salesforce Marketing Cloud)** is used for:
+- **Customer profile data management** - Storing customer personal information, contact details, and marketing preferences
+- **Marketing automation integration** - Managing marketing campaigns and customer communications
+- **Email marketing** - Handling email subscriptions, preferences, and delivery
+- **Customer segmentation** - Supporting marketing campaign targeting and personalization
+- **Loyalty program integration** - Tracking Unity loyalty enrollment, tier status, and engagement data
+
+## MCP Tools Exposed
+
+SFMC exposes **2 MCP tools**:
+
+1. **`getSfmcAccount`** - Retrieves customer profile data from SFMC including:
+   - Personal information (name, DOB, gender, language)
+   - Contact details (email, phone, address)
+   - Email verification and subscription status
+   - Loyalty program information (Unity enrollment, tier)
+   - Activity data (last login, visits, property visits)
+   - Account status (active, banned, deceased, veteran flags)
+
+2. **`getSfmcGlobalPreferences`** - Retrieves global marketing preference settings including:
+   - Mail delivery preferences
+   - Unity Hard Rock communication opt-ins (mail and email)
+   - Casino communication opt-ins (mail and email)
+
+Both tools require an `accountNumber` and `correlationId` as parameters.
+
+*This information comes from `/apis/sfmc.md`*
+
+--- elapsed: 15.773413 sec ---
+
+===== Q6 =====
+QUESTION: What ELK index families are queried by the MCP tools, and what do they track?
+--- output ---
+java.exe : time=2026-07-09T15:02:30.265+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:02:32.802+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/index.md"
+time=2026-07-09T15:02:35.473+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/_index.md"
+Based on the documentation I found, here's what the MCP tools query:
+
+## ELK Index Families
+
+The MCP tools query **two ELK index families**:
+
+1. **`integration-analytics-ciam`** ? Tracks authentication and login events
+   - Queried by: `queryElkCiamAnalyticsLogs` tool
+   - Contains: CIAM authentication logs, login attempts, user events, multi-factor authentication flows, account lockouts, and login patterns
+
+2. **`integration-analytics-wso2`** ? Tracks API gateway request/response telemetry
+   - Queried by: `queryElkIntegrationAnalyticsLogs` tool
+   - Contains: WSO2 MI API gateway logs including request/response telemetry, endpoints, latencies, system failures, correlation tracking, and notification integration logs (email, SMS, mobile-push)
+
+---
+
+**Source:** `/apis/elk/_index.md` (ELK Logs MCP Tools ? Shared Guide)
+
+--- elapsed: 17.3988456 sec ---
+
+===== Q7 =====
+QUESTION: What fields are available in the CIAM logs, and what kind of events do they capture?
+--- output ---
+java.exe : time=2026-07-09T15:02:47.548+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:02:50.122+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/index.md"
+time=2026-07-09T15:02:52.176+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/ciam-logs.md"
+Based on the documentation from `/apis/elk/ciam-logs.md`, here's what the CIAM logs contain:
+
+## Events Captured
+
+CIAM logs capture **authentication events** with two main types:
+
+1. **`login-step` events** ? Individual authentication steps (username validation, password entry, OTP verification, etc.)
+2. **`login` events** ? Final authentication result (only appears when all steps eventually succeed)
+
+These logs help explain *why a login succeeded or failed* and track **multi-step** and **multi-factor** authentication flows.
+
+## Available Fields
+
+### Essential Fields:
+- **`@timestamp`** - Event time (datetime UTC)
+- **`event`** - Event type (`login` or `login-step`)
+- **`success`** - Outcome as string (`"true"` or `"false"`)
+- **`contextId`** - Session identifier linking all steps in an authentication flow
+- **`authenticationStep`** - Step number in the flow (`"0"`, `"1"`, `"2"`, etc.)
+- **`stepAuthenticator`** - Authentication handler type (e.g., `SHRSSIdentifierHandler`, `SMSOTP`, `EmailOTP`, `SHRSSFirstTimeAuthenticator`)
+
+### User Identification Fields:
+- **`claims.accountNumber`** - Account number (primary identifier)
+- **`claims.emailAddress`** - User email
+- **`claims.userId`** - Internal user UUID
+- **`username`** - CIAM username/UUID
+
+### Authentication Context:
+- **`claims.failedReason`** - Human-readable failure explanation (e.g., `"Invalid Credentials"`, `"Account is Locked"`, `"PENDING_SR"`, `"USER_NOT_FOUND"`)
+- **`isFirstLogin`** - Whether this was the first successful login
+- **`serviceProvider`** - Client/app initiating the login
+
+### Technical Details:
+- **`claims.browserAgent`** - Full user agent string
+- **`claims.browser`** / **`claims.browserVersion`** - Browser family and version
+- **`claims.ipAddress`** - Client IP address
+- **`claims.operatingSystem`** / **`claims.osVersion`** - OS family and version
+
+The logs use the ELK index `integration-analytics-ciam` and should always be filtered by `event: "login"` or `event: "login-step"` to get authentication-specific events.
+
+--- elapsed: 21.8145923 sec ---
+
+===== Q8 =====
+QUESTION: What kind of information do the WSO2 integration logs contain, such as latency or correlation tracking?
+--- output ---
+java.exe : time=2026-07-09T15:03:09.547+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:03:12.462+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/index.md"
+time=2026-07-09T15:03:14.486+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/integration-logs.md"
+Based on the documentation from `/apis/elk/integration-logs.md`, WSO2 integration logs contain the following types of information:
+
+## **Latency Tracking:**
+- **`backendLatency`** - Backend call latency in milliseconds
+- **`requestPathLatency`** - Per-path latency on request processing (ms)
+- **`responsePathLatency`** - Per-path latency on response processing (ms)
+- **`roundTripPathLatency`** - End-to-end latency across the entire path (ms)
+
+## **Correlation Tracking:**
+- **`correlationId`** - Cross-service correlation identifier (UUID) that allows you to trace a request across all services and through the entire request/response flow
+
+## **Additional Telemetry Information:**
+- **Request/Response Flow**: `flowDirection` field tracks messages through the gateway (`REQUEST_IN` ? `REQUEST_OUT` ? `RESPONSE_IN` ? `RESPONSE_OUT`)
+- **HTTP Status Codes**: `httpSC` and `httpSCDesc` for response status
+- **API Identification**: `apiName`, `urlPattern`, `requestPath`, `httpMethod`
+- **Endpoint Information**: `endPoint` and `backendUrl` for target systems
+- **Error Details**: Both internal (`intErrorCode`, `intErrorMsg`) and external (`extErrorCode`, `extErrorMsg`) error information
+- **Identity Context**: `userId`, `profileId`, `sessionId`, `deviceId`, `objectId` (account number)
+- **Application Context**: `applicationName`, `serviceName`, `environment`, `miDomain`
+- **Timestamps**: `@timestamp` and `logTimestamp` for precise timing
+
+The logs are stored in the `integration-analytics-wso2` index and can be queried using the `queryIntegrationApiLogs` MCP tool.
+
+**Source**: `/apis/elk/integration-logs.md`
+
+--- elapsed: 21.8327855 sec ---
+
+===== Q9 =====
+QUESTION: How are notification delivery failures tracked in the integration logs?
+--- output ---
+java.exe : time=2026-07-09T15:03:31.666+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:03:34.317+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/index.md"
+time=2026-07-09T15:03:36.550+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/integration-logs-notifications.md"
+Based on the documentation from `/apis/elk/integration-logs-notifications.md`, notification delivery failures are tracked in the integration logs through the following mechanisms:
+
+## Tracking Notification Delivery Failures
+
+**1. Flow Direction Field**
+- Failures are indicated by `flowDirection: "NOTIFICATION_FAULT"` 
+- Successful flows show: `NOTIFICATION_IN` ? `NOTIFICATION_OUT`
+- Failed flows show: `NOTIFICATION_IN` ? `NOTIFICATION_FAULT`
+
+**2. Fault Details**
+When a notification fails, the log entry includes:
+- **`faultCode`**: Error code identifying the type of failure (e.g., `"10000"` for missing required fields, `"sms-sys-v1-001"` for invalid phone numbers)
+- **`faultMessage`**: Detailed error description explaining what went wrong
+
+**3. Example Failed Notification**
+```json
+{
+  "flowDirection": "NOTIFICATION_FAULT",
+  "faultCode": "10000",
+  "faultMessage": "MCMS_UTM_Validation_MissingRequiredField_definitionKey: Missing required field",
+  "notificationTo": "shrss.miguel116@gmail.com",
+  "TemplateName": "UL_Resend_Create_Password",
+  "objectId": "200189098",
+  "correlationId": "c8049c35-3f15-4090-ad93-26b9f3f0a184"
+}
+```
+
+**4. Querying Failures**
+You can query failed notifications using the `queryIntegrationNotificationLogs` tool with filters:
+```javascript
+filters: {
+  flowDirection: "NOTIFICATION_FAULT",
+  onlyFailed: true
+}
+```
+
+This tracks both email (`TRANSACT_EMAIL`) and SMS notification failures with full correlation tracking via `correlationId`.
+
+--- elapsed: 21.6987538 sec ---
+
+===== Q10 =====
+QUESTION: Give an example of a real-world web authentication failure scenario from the ELK CIAM web scenarios document.
+--- output ---
+java.exe : time=2026-07-09T15:03:52.922+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:03:55.597+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/index.md"
+time=2026-07-09T15:03:57.868+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/ciam-web-scenarios.md"
+Based on the **CIAM Web Authentication Scenarios** document (`/apis/elk/ciam-web-scenarios.md`), here's a real-world web authentication failure example:
+
+## Example: Failed Login - Account Locked After 3 Invalid Password Attempts (Scenario 3)
+
+**Real-world situation:** A customer (account number `950101990`, email `raj.rajaratnam.locked@yopmail.com`) entered the wrong password 3 times in quick succession, causing their account to be automatically locked.
+
+**What happened in the logs:**
+The authentication attempt generated 4 events over 12 seconds:
+
+1. **13:54:35** - Step 1 succeeded: Account identification validated (`SHRSSIdentifierHandler`)
+2. **13:54:39** - Step 2 failed: First wrong password attempt (`failedAttemptRatio: "0/1"`)
+3. **13:54:41** - Step 2 failed: Second wrong password attempt (`failedAttemptRatio: "0/2"`)
+4. **13:54:47** - Step 2 failed: Third wrong password attempt (`failedAttemptRatio: "0/0"`) - **account now locked**
+
+**Key indicators of this failure:**
+- Multiple `login-step` events with `success: "false"`
+- `failedReason: "Invalid Credentials"` at step 2 (`SHRSSFirstTimeAuthenticator`)
+- Progressive tracking in `failedAttemptRatio` showing escalating failures
+- No final `login` event (indicating authentication never completed)
+- All subsequent login attempts will now show `failedReason: "Account is Locked"` until the account is unlocked via CIAM API or customer service
+
+This scenario demonstrates how the system tracks failed attempts and automatically protects accounts from potential credential stuffing attacks.
+
+--- elapsed: 22.5547701 sec ---
+
+===== Q11 =====
+QUESTION: What steps should I take when a customer says they can't log in?
+--- output ---
+java.exe : time=2026-07-09T15:04:15.345+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:04:17.514+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/login.md"
+Based on the knowledge bundle, here are the steps you should take when a customer says they can't log in:
+
+## Step-by-Step Login Troubleshooting Process
+
+### **Step 1: Gather Information**
+- Get the customer's **Account Number** (preferred) or **Email Address**
+- Ask for the **time window** when they attempted to log in
+- Note the **specific symptoms** they're experiencing (e.g., "password incorrect", "didn't get OTP", "account locked")
+
+### **Step 2: Check Authentication Logs**
+Use specialized tools to analyze their login attempts:
+- **Check successful logins**: Use `getAllSuccessfulLoginsForAnUserInGivenTimePeriod` to see if they've logged in successfully recently
+- **Check failed attempts**: Use `getAllFailedLoginAttemptsForAnUserInGivenTimePeriod` to identify failure reasons
+  - Look for the `claims.failedReason` field which explains why authentication failed
+  - Analyze the `contextId` to correlate authentication steps
+
+### **Step 3: Verify Account State**
+Use the `getCiamAccount` tool to check critical account fields:
+- `accountLocked`, `accountDisabled`, `accountActivated`
+- `accountState`, `accountDisabledReason`, `deceased`
+- `playerType` (watch for `"REQINACT"` restriction)
+
+### **Step 4: Apply the Appropriate Resolution**
+
+Based on what you find, take one of these actions:
+
+- **A) Invalid Credentials** ? Use `resetCiamPassword` tool
+- **B) Account Locked** ? Use `unlockCiamAccount` tool
+- **C) Unactivated Account** ? Use `activateCiamEmailOnlineSignup` or `activateCiamEmailOnPropertySignup` (depending on whether `accountState` is `PENDING_SR` or `PENDING_AP`)
+  - ?? **Never unlock PENDING accounts manually** - they must complete activation first
+- **D) User-Deleted Account** ? Use `restoreCiamAccount` tool (only if `accountDisabledReason="ONLINE_DELETED"`)
+- **E) OTP Delivery Issues** ? Check notification logs using `queryIntegrationNotificationLogs`
+- **F) Complex Issues** ? Escalate to SHRSS Integration Team for:
+  - Deceased accounts
+  - Restricted accounts (`playerType="REQINACT"`)
+  - Data inconsistencies
+  - Admin-disabled accounts
+
+### **Step 5: If OTP/Email Issues** (Optional)
+If the customer reports not receiving emails or SMS codes, use `queryIntegrationNotificationLogs` to verify if notifications were sent and delivered successfully.
+
+---
+
+**Source**: This answer comes from `/issues/login.md` (Customer Unable to Login workflow).
+
+--- elapsed: 21.8449123 sec ---
+
+===== Q12 =====
+QUESTION: A customer says their Unity Points balance looks wrong. What's the diagnostic process?
+--- output ---
+java.exe : time=2026-07-09T15:04:37.116+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:04:39.500+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/unity-points.md"
+Based on the knowledge bundle, here's the diagnostic process for Unity Points balance issues:
+
+## Diagnostic Process for Unity Points Issues
+
+**Follow these steps strictly:**
+
+### **Step 1: Gather Information**
+- Account Number (preferred) or Email Address
+- Time window when the issue was noticed
+- Specific symptoms reported by the customer
+
+### **Step 2: Query Unity Points Balance**
+- Use the `getEngageUnityPoints` tool (from Engage API)
+- Check these key fields:
+  - `balance` ? Total Unity points currently available
+  - `expiringBalance` ? Points that will expire soon
+  - `expiryDays` ? Days until expiring points expire
+
+### **Step 3: Check Integration Logs (if discrepancies are reported)**
+- Use `queryIntegrationApiLogs` tool with:
+  - URL pattern: `/profile/{profile-id}/gaming/{account-number}/unity-point`
+  - ObjectId: Customer's account number
+  - Flow direction: `RESPONSE_OUT`
+  - Time range covering the incident window
+- Look for HTTP status codes (expect "200" for success), application name, and latency
+
+### **Step 4: Determine Root Cause**
+Compare findings against this diagnostic matrix:
+
+| **Issue Type** | **Resolution** |
+|----------------|----------------|
+| API balance ? web/mobile display (with normal API calls) | **Escalate** - Frontend/middleware issue |
+| API balance matches display but customer disagrees | **Escalate** - Customer dispute requiring transaction analysis |
+| Non-200 HTTP status in logs | **Escalate** - API integration failure |
+| No API calls found during timeframe | **Escalate** - Frontend connectivity/caching issue |
+
+### **Critical Points:**
+- **All Unity Points issues require escalation** to SHRSS Integration Team
+- No self-service resolution tools exist for points adjustments
+- Unity Points reside only in Engage system with no cross-system sync
+- Include account number, Engage API balance, integration logs, and customer's reported issue in escalation
+
+---
+
+*This answer comes from `/issues/unity-points.md`*
+
+--- elapsed: 17.4439474 sec ---
+
+===== Q13 =====
+QUESTION: What should I check if a customer's personal information like email, phone, or address looks incorrect across channels?
+--- output ---
+java.exe : time=2026-07-09T15:04:54.916+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:04:56.917+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/data-incorrect.md"
+Based on the knowledge bundle, when a customer's personal information like email, phone, or address looks incorrect across channels, you should follow this diagnostic workflow:
+
+## What to Check:
+
+### **Step 1: Verify Current Data Across All Systems**
+
+Check the customer's information in each of these systems using the appropriate tools:
+
+1. **Engage (Primary Profile Check)**
+   - Check: `primaryEmail.email`, email verification status, `mobilePhone.phoneNumber`, `homeAddress`, and `alternateAddress`
+
+2. **CIAM (Authentication System)**
+   - Check: `email` used for login, `mobileNumber` for 2FA
+   - Compare with Engage data for inconsistencies
+
+3. **ProfileDB (Profile Database)**
+   - Check: Profile information fields, personal data consistency, address and contact information
+   - Compare with other systems for data sync issues
+
+4. **SFMC (Marketing System)**
+   - Check: Email subscription status, marketing communication settings, email verification status
+   - Compare with Engage email data for discrepancies
+
+### **Step 2: Identify the Root Cause**
+
+Look for these common patterns:
+- **Email Address Incorrect**: Wrong email in any of the systems
+- **Phone Number Outdated**: Old/wrong phone in any system
+- **Address Incorrect**: Wrong address in Engage, ProfileDB, or SFMC
+- **Data Inconsistency Across Systems**: Different data showing in CIAM vs Engage vs ProfileDB vs SFMC (explains why customer sees different info on website vs app)
+- **Email Subscription Issues**: Incorrect email status/verification
+- **Multiple Field Issues**: Multiple incorrect fields across systems
+
+The key is to check all four systems and compare the data to identify where the discrepancy exists and whether it's a single-system issue or a synchronization problem across multiple systems.
+
+---
+**Source**: `/issues/data-incorrect.md`
+
+--- elapsed: 18.2270183 sec ---
+
+===== Q14 =====
+QUESTION: How do I investigate a customer's free play issues?
+--- output ---
+java.exe : time=2026-07-09T15:05:13.198+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:05:15.183+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/free-play.md"
+Based on the knowledge bundle, here's how to investigate a customer's free play issues:
+
+## Investigation Steps
+
+### 1. **Gather Information**
+- Get the customer's **Account Number** (preferred) or **Email Address**
+- Determine the **time window** when the issue was noticed
+- Document the **specific symptoms** they're reporting (e.g., "free play is missing," "balance shows zero," "different amounts on web vs mobile")
+
+### 2. **Query Free Play Balance**
+Use the **Engage API** (`getEngageFreePlay` tool) to get the authoritative free play data.
+
+**Key fields to check:**
+- `summary.totalAvailableAmount` ? Total available across all properties
+- `lastVisitFreePlayPendingDate` ? Check if free play is in settlement period
+- `daysToNextExpiration` and `totalNextExpiringAmount` ? Expiration tracking
+- `lastVisitFreePlayEarnedDate` and `lastVisitFreePlayEarnedAmount` ? Recent activity
+- Property-specific balances in `balances` array
+
+### 3. **Check Integration Logs (if discrepancies exist)**
+Use the **Integration Logs API** (`queryIntegrationApiLogs` tool) with:
+- URL pattern: `/profile/{profile-id}/gaming/{account-number}/free-play`
+- Customer's account number
+- Relevant time range
+- Flow direction: `RESPONSE_OUT`
+
+Look for HTTP status codes, application origins, and any API failures.
+
+### 4. **Determine Root Cause & Escalate**
+Compare the Engage API balance with what the customer sees. **All free play issues require escalation to the SHRSS Integration Team** because:
+- Free play data resides only in Engage (no cross-system sync)
+- No self-service resolution tools are available
+- Frontend/middleware issues require development team investigation
+- Transaction history analysis requires elevated permissions
+
+**Include in escalation:**
+- Account number
+- Free play balance from Engage API
+- Integration log entries (or absence of calls)
+- Customer's reported issue and timing
+
+---
+
+**Source:** `/issues/free-play.md`
+
+--- elapsed: 17.6693792 sec ---
+
+===== Q15 =====
+QUESTION: How can I view a customer's complete activity history?
+--- output ---
+java.exe : time=2026-07-09T15:05:30.912+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:05:33.303+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/index.md"
+time=2026-07-09T15:05:35.689+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/index.md"
+time=2026-07-09T15:05:37.943+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/user-activities.md"
+Based on the knowledge bundle, I can provide you with a comprehensive answer on how to view a customer's complete activity history.
+
+## How to View a Customer's Complete Activity History
+
+To view a customer's complete activity history, you need to follow a **6-step process** that gathers data from multiple systems. Here's the workflow:
+
+### Required Information
+- **Account Number** (preferred) or **Email Address**
+- **Investigation time window** (specific dates or "since account creation")
+
+### Step-by-Step Process
+
+**Step 1: Get Account Foundation Details**
+- Use the `getCiamUser` tool to retrieve basic account information including:
+  - Account creation date
+  - Account activation status and date
+  - Current account state
+  - Registration scenario (how they signed up)
+
+**Step 2: Analyze Authentication History (2 Required Queries)**
+You MUST run BOTH of these queries:
+1. `getAllSuccessfulLoginsForAnUserInGivenTimePeriod` - retrieves all successful logins
+2. `getAllFailedLoginAttemptsForAnUserInGivenTimePeriod` - retrieves all failed login attempts
+
+**Step 3: Investigate API Usage Patterns**
+- Use `queryIntegrationApiLogs` with filter `flowDirection: "RESPONSE_OUT"` to retrieve all API activities
+- This captures what the customer actually did (viewed offers, checked points, updated profile, etc.)
+
+**Step 4: Interpret the Activities**
+- Match API calls to actual user actions using reference tables provided in the documentation
+- For example: `GET /profile/{profile-id}/gaming/{account-number}/unity-point` = "View Unity Points"
+
+**Step 5: Create Complete Timeline**
+Combine ALL data into a chronological timeline table with these columns:
+- **Date & Time**
+- **Activity/Task** (what they did)
+- **Result/Outcome** (success/failure with details)
+- **Source** (CIAM Logs or Integration API)
+- **Related URL Pattern**
+
+The timeline must include:
+- ? All successful login attempts
+- ? All failed login attempts  
+- ? All API activities (viewing points, offers, reservations, profile updates, etc.)
+- ? Account creation/activation events (if in time window)
+
+### Output Format
+The complete activity history is presented as a comprehensive table showing chronological activities with outcomes, followed by summary sections covering account overview, activity statistics, notable events, and the time period covered.
+
+---
+
+**Answer source:** `/issues/user-activities.md`
+
+--- elapsed: 28.5996305 sec ---
+
+===== Q16 =====
+QUESTION: How do I analyze system-wide login patterns or investigate an authentication issue affecting many users?
+--- output ---
+java.exe : time=2026-07-09T15:05:59.298+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ssues/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:06:01.478+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/system-login-analytics.md"
+Based on the knowledge bundle, here's how to analyze system-wide login patterns or investigate authentication issues affecting many users:
+
+## Answer
+
+Use the **System-Wide Login Analytics and Monitoring** guide (`/issues/system-login-analytics.md`), which provides two main tools:
+
+### 1. **Analyze Successful Logins**
+Use `getAllSuccessfulLoginsInGivenTimePeriod` to:
+- Get total successful login counts for any time period
+- Group results by application, browser, operating system, or none
+- Example: Track login volumes during specific events or compare web vs. mobile performance
+
+### 2. **Investigate Failed Login Attempts**
+Use `getAllFailedLoginAttemptsInGivenTimePeriod` to:
+- Group failures by reason (Invalid Credentials, Account Locked, etc.)
+- Identify app-specific issues by grouping by application
+- Analyze authentication method problems by grouping by stepAuthenticator
+
+**Critical Note:** This tool returns three datasets:
+- Failed individual login steps
+- Failed final login attempts  
+- Successful logins (for context)
+
+You must analyze the `contextId` field to determine truly failed attempts vs. users who eventually succeeded after initial failures.
+
+### Investigation Workflow
+1. **Start with aggregated views** - Use groupBy to identify patterns without pulling massive detail
+2. **Calculate success rates** - Healthy systems typically show 85-95%+ success rates
+3. **Look for red flags** - Sudden spikes in failures, unusual failure reasons, or app-specific issues
+4. **Drill down as needed** - Request detailed records only for anomalous patterns
+
+### Common Use Cases Covered
+- Daily login summary reports
+- Incident investigation when failures spike
+- Application-specific performance analysis
+- Security analysis (identifying brute-force attacks)
+
+**Source:** `/issues/system-login-analytics.md`
+
+--- elapsed: 18.0048361 sec ---
+
+===== Q17 =====
+QUESTION: What are the login eligibility rules? Who is allowed or restricted from logging in?
+--- output ---
+java.exe : time=2026-07-09T15:06:17.557+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="rules/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...rules/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:06:19.633+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="rules/login.md"
+Based on the **Login Rules Reference** (`/rules/login.md`), here are the login eligibility rules:
+
+## **Who Can Log In**
+Customers can log in using their **account number** or **email address** if their account meets all the following criteria:
+- Account is activated (`accountActivated = true`)
+- Account is not locked (`accountLocked = false`)
+- Customer is not deceased (`deceased = false`)
+- Account is not disabled (`accountDisabled = false`)
+- Player type is NOT `"REQINACT"`
+
+## **Who Is Restricted from Logging In**
+A customer **cannot log in** if **any** of these conditions are true:
+
+1. **Not Activated**
+   - `accountActivated = false`
+   - Account is in `"PENDING_AP"` state (created on property) or `"PENDING_SR"` state (created online)
+
+2. **Locked Account**
+   - `accountLocked = true`
+   - Caused by too many invalid password attempts or administrative lock
+
+3. **Deceased Account**
+   - `deceased = true`
+
+4. **Disabled Account**
+   - `accountDisabled = true`
+   - If reason is `"ONLINE_DELETED"` ? customer deleted their own account
+   - Otherwise ? administratively disabled
+
+5. **Restricted Player Type**
+   - `playerType = "REQINACT"` ? Login explicitly not permitted
+
+---
+
+**Source:** `/rules/login.md` - Login Rules Reference
+
+--- elapsed: 14.7643348 sec ---
+
+===== Q18 =====
+QUESTION: Is there a connection between the login rules and the login issue troubleshooting guide? Explain how they relate.
+--- output ---
+java.exe : time=2026-07-09T15:06:32.873+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="rules/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...rules/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:06:35.403+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="rules/login.md"
+time=2026-07-09T15:06:39.848+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/index.md"
+time=2026-07-09T15:06:42.243+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/login.md"
+Yes, there is a strong connection between the login rules and the login issue troubleshooting guide. They are complementary resources that work together:
+
+## How They Relate:
+
+**1. The Login Rules Define "What Should Happen"**
+The login rules (`/rules/login.md`) establish the business logic that determines:
+- Which account states allow or block login (e.g., `accountLocked=true`, `deceased=true`, `playerType="REQINACT"`)
+- What authentication flows are available (password, email OTP, SMS OTP, SSO)
+- How account states should be consistent (e.g., `accountActivated=false` should pair with `PENDING_AP` or `PENDING_SR`)
+
+**2. The Troubleshooting Guide Uses Rules to Diagnose "What Went Wrong"**
+The login troubleshooting guide (`/issues/login.md`) directly references and applies these rules to:
+- **Verify account state** (Step 3) - checking the exact fields defined in the login rules
+- **Determine root cause** (Step 4) - using a diagnostic matrix that maps rule violations to specific failure reasons
+- **Apply correct resolution** - based on which rule was violated
+
+## Concrete Examples of Integration:
+
+The troubleshooting guide's **Diagnostic Matrix** directly implements the login rules:
+
+| Login Rule Violation | Troubleshooting Detection | Resolution |
+|---------------------|---------------------------|------------|
+| `accountLocked=true` blocks login | Check for `failedReason="Account is Locked"` | Unlock account |
+| `accountActivated=false` with `PENDING_SR` blocks login | Check for `failedReason="PENDING_SR"` | Resend activation |
+| `playerType="REQINACT"` blocks login | Check for `failedReason="Account is restricted: REQINACT"` | Escalate |
+
+Both documents explicitly cross-reference each other - the login rules link to the troubleshooting guide at the bottom, and the troubleshooting guide references the login rules in its "Business Logic" section.
+
+**Answer derived from:** `/rules/login.md` and `/issues/login.md`
+
+--- elapsed: 27.6794525 sec ---
+
+===== Q19 =====
+QUESTION: What categories of issues does the troubleshooting playbook cover?
+--- output ---
+java.exe : time=2026-07-09T15:06:59.779+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Based on the troubleshooting playbook, it covers **three main categories of issues**:
+
+1. **Authentication & Access** - Issues related to customer login problems
+2. **Loyalty Program & Rewards** - Issues with Unity Points and Free Play
+3. **Data Management & Profile** - Issues with incorrect customer data on digital channels and viewing user activities/account history
+
+This information comes from `/troubleshooting_playbook.md`.
+
+--- elapsed: 9.2891972 sec ---
+
+===== Q20 =====
+QUESTION: If I'm not sure which runbook to use for a customer issue, where should I start?
+--- output ---
+java.exe : time=2026-07-09T15:07:08.584+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Based on the knowledge bundle, **if you're not sure which runbook to use for a customer issue, you should start with the [Troubleshooting Playbook](/troubleshooting_playbook.md)**.
+
+This playbook serves as an index of all available runbooks organized by category, including:
+- **Authentication & Access** (e.g., login issues)
+- **Loyalty Program & Rewards** (e.g., Unity Points, Free Play issues)
+- **Data Management & Profile** (e.g., incorrect data, user activity history)
+
+It will help you identify the appropriate specific runbook based on the type of issue the customer is experiencing.
+
+*(Answer from: `/troubleshooting_playbook.md`)*
+
+--- elapsed: 9.9592576 sec ---
+
+===== Q21 =====
+QUESTION: A customer can't log in AND their Unity Points look wrong. Which two runbooks should I combine, and what's the first diagnostic step for each?
+--- output ---
+java.exe : time=2026-07-09T15:07:19.694+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...ng_playbook.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:07:22.927+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/login.md"
+time=2026-07-09T15:07:25.640+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/unity-points.md"
+Based on the troubleshooting documentation, here are the two runbooks you should combine:
+
+## The Two Runbooks:
+1. **Customer Unable to Login** (`issues/login.md`)
+2. **Customer Unity Points Issues** (`issues/unity-points.md`)
+
+---
+
+## First Diagnostic Step for Each:
+
+### Login Issue - Step 1: Gather Information
+Collect:
+- **Account Number** (preferred) or **Email Address**
+- **Time window** when login was attempted
+- **Specific symptoms** reported by customer
+
+### Unity Points Issue - Step 1: Gather Information
+Collect:
+- **Account Number** (preferred) or **Email Address**  
+- **Time window** when issue was noticed
+- **Specific symptoms** reported by customer
+
+---
+
+## Combined First Step:
+Since both runbooks start with gathering the same core information, your **first diagnostic step when handling both issues together** is:
+
+**Gather comprehensive information covering both problems:**
+- Account Number or Email Address
+- Time window when login was attempted AND when points issue was noticed
+- Specific symptoms for the login problem (error messages, locked account, etc.)
+- Specific symptoms for the points problem (missing points, incorrect balance, display issues)
+
+This allows you to efficiently investigate both issues using the same customer identifier and potentially overlapping timeframes.
+
+*Answer sourced from: `issues/login.md` and `issues/unity-points.md`*
+
+--- elapsed: 21.6012518 sec ---
+
+===== Q22 =====
+QUESTION: What's the difference between the CIAM MCP tools and the ELK CIAM logs? When would I use one versus the other?
+--- output ---
+java.exe : time=2026-07-09T15:07:40.694+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:07:43.907+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/ciam.md"
+time=2026-07-09T15:07:47.088+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/index.md"
+time=2026-07-09T15:07:49.503+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/elk/ciam-logs.md"
+Based on the documentation, here are the key differences between **CIAM MCP tools** and **ELK CIAM logs**:
+
+## **CIAM MCP Tools** (`/apis/ciam.md`)
+These are **action-oriented tools** for managing and modifying customer accounts:
+
+**Purpose:**
+- Perform account management operations
+- Retrieve current account state
+- Modify account status and trigger workflows
+
+**What you can do:**
+- Get account details (`getCiamAccount`)
+- Lock/unlock accounts (`lockCiamAccount`, `unlockCiamAccount`)
+- Enable/disable accounts (`enableCiamAccount`, `disableCiamAccount`)
+- Activate accounts (`activateCiamAccount`)
+- Restore deleted accounts (`restoreCiamAccount`)
+- Send activation/reset emails (`activateCiamEmailOnlineSignup`, `resetCiamPassword`)
+
+**Use when:**
+- You need to **change** an account's state
+- Customer needs immediate remediation (unlock, activate, reset password)
+- You need current account status and configuration
+- You're resolving account access issues
+
+---
+
+## **ELK CIAM Logs** (`/apis/elk/ciam-logs.md`)
+These are **historical authentication event logs** for investigation and analysis:
+
+**Purpose:**
+- Query past authentication events
+- Understand why logins succeeded or failed
+- Track authentication flow patterns
+
+**What you can see:**
+- Login attempt history (successful and failed)
+- Multi-step authentication flows (username ? password ? OTP)
+- Failure reasons (`claims.failedReason`)
+- Session correlation via `contextId`
+- Authentication methods used (`stepAuthenticator`)
+- Timestamps and retry patterns
+
+**Use when:**
+- You need to **investigate** why a login failed
+- Customer reports "I can't login" and you need to see what happened
+- You want to analyze authentication patterns or count failed attempts
+- You need to trace a specific authentication session
+- You're doing forensics or troubleshooting intermittent issues
+
+---
+
+## **When to Use Which:**
+
+| Scenario | Use This |
+|----------|----------|
+| "Customer can't login - account is locked" | **CIAM MCP Tools** ? `unlockCiamAccount` |
+| "Why did customer's login fail yesterday?" | **ELK Logs** ? Query authentication history |
+| "Customer needs password reset email" | **CIAM MCP Tools** ? `resetCiamPassword` |
+| "How many times did customer try to login?" | **ELK Logs** ? Count `login-step` events |
+| "What's the current account status?" | **CIAM MCP Tools** ? `getCiamAccount` |
+| "What error message did customer see at login?" | **ELK Logs** ? Check `claims.failedReason` |
+
+**In practice:** You'll often use **both together** - query ELK logs to diagnose the problem, then use CIAM MCP tools to fix it.
+
+---
+
+**Answer sources:** `/apis/ciam.md` and `/apis/elk/ciam-logs.md`
+
+--- elapsed: 32.0653965 sec ---
+
+===== Q23 =====
+QUESTION: What is the refund policy for cancelled orders?
+--- output ---
+java.exe : time=2026-07-09T15:08:12.802+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="rules/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09...rules/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+time=2026-07-09T15:08:15.345+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="issues/index.md"
+time=2026-07-09T15:08:17.936+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="troubleshooting_playbook.md"
+time=2026-07-09T15:08:20.512+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="rules/index.md"
+time=2026-07-09T15:08:23.093+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+time=2026-07-09T15:08:25.633+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="rules/index.md"
+I've searched through the available knowledge bundle, but I cannot find any information about refund policies for cancelled orders. 
+
+The knowledge bundle I have access to appears to be focused on:
+- Authentication and login troubleshooting
+- Loyalty programs (Unity Points, Free Play)
+- Customer data management
+- API references for CIAM, ProfileDB, Engage, and SFMC systems
+- System monitoring and user activity tracking
+
+There is no section covering order management, refunds, or cancellation policies. To answer your question about refund policies for cancelled orders, I would need access to a different knowledge bundle or documentation that covers e-commerce, order management, or financial policies.
+
+Is it possible you meant to ask about a different topic related to loyalty points, account access, or customer data? Or do you have access to additional documentation that might contain refund policy information?
+
+--- elapsed: 24.3889355 sec ---
+
+===== Q24 =====
+QUESTION: How many badge classes are there on Stack Overflow?
+--- output ---
+java.exe : time=2026-07-09T15:08:36.176+05:30 level=INFO module=damsith_adikari/okf_ballerina_agent message="opened concept" 
+concept="apis/index.md"
+At C:\Users\Damsith Adikari\SupportOKF\okf_ballerina_agent\run_test_battery.ps1:42 char:15
++     $output = & $javaExe -jar $jar $q 2>&1
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=2026-07-09..."apis/index.md":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+I can see this knowledge bundle is about Hard Rock's customer systems (CIAM, loyalty programs, etc.), not Stack Overflow. The question about Stack Overflow badge classes doesn't appear to be related to the content available in this knowledge bundle.
+
+Let me check if there might be any Stack Overflow-related content by exploring a bit further, but based on the index structure showing APIs for CIAM, ProfileDB, Engage, SFMC, and ELK logging systems, this appears to be an internal Hard Rock customer support knowledge base.
+
+Could you clarify if you meant to ask about a different topic related to Hard Rock's systems, or did you intend to query a different knowledge base about Stack Overflow?
+
+--- elapsed: 10.0680105 sec ---
+
+ALL DONE: 24 questions run.

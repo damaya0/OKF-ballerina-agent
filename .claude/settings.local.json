@@ -9,7 +9,8 @@
       "Bash(/c/Program Files/Ballerina/bin/bal.bat version *)",
       "Bash(export COLUMNS=200)",
       "Bash(\"/c/Program Files/Ballerina/bin/bal.bat\" search anthropic)",
-      "Bash(\"/c/Program Files/Ballerina/bin/bal.bat\" search claude)"
+      "Bash(\"/c/Program Files/Ballerina/bin/bal.bat\" search claude)",
+      "PowerShell(& \"C:\\\\Users\\\\Damsith Adikari\\\\SupportOKF\\\\okf_ballerina_agent\\\\run_test_battery.ps1\")"
     ]
   }
 }
