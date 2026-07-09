@@ -92,20 +92,3 @@ or interactively (it'll prompt for the question):
 bal run
 ```
 
-## Project structure
-
-| Path                     | Committed? | What it is                                          |
-|---------------------------|:---------:|------------------------------------------------------|
-| `okf_bundle_builder/`     | yes       | Converts `docs/` into an OKF bundle                  |
-| `okf_ballerina_agent/`    | yes       | Answers questions by navigating the bundle           |
-| `docs/`                   | **no**    | Your raw source documentation (you provide this)      |
-| `docs_bundle/`            | **no**    | The generated OKF bundle (output of step 3)           |
-| `knowledge-catalog/`      | **no**    | Optional: a local clone of [GoogleCloudPlatform/knowledge-catalog](https://github.com/GoogleCloudPlatform/knowledge-catalog), kept for background reading on OKF. Not part of this repo and not required to run anything above -- `git clone` it separately if you want it. |
-
-## Notes
-
-- Both `Config.toml` files are gitignored (each project's own `.gitignore`)
-  -- the `Config.toml.example` files are the committed templates.
-- The model id is validated against `ballerinax/ai.anthropic`'s pinned enum
-  (`anthropic:ANTHROPIC_MODEL_NAMES`), not an arbitrary string -- check that
-  package if you want a model it doesn't yet list.
