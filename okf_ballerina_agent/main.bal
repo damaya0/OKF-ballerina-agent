@@ -39,4 +39,3 @@ public isolated function open_concept(string conceptId) returns string|error {
     log:printInfo("opened concept", concept = relativePath);
     return conceptContent;
 }
-
